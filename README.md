@@ -20,9 +20,13 @@ $ ./mvnw clean
 ...
 $ ./mvnw compile
 ...
+$ ./mvnw test  # <== Optional. This currently does nothing except emitting a huge (most likely useless) log output.
+...
 $ ./mvnw package
 ...
 ```
+
+(Note: the `package` target above includes `test`.)
 
 ## Running
 
