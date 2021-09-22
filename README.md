@@ -33,14 +33,22 @@ $ ./mvnw package
 **Run** the microservice using **Maven Wrapper** (generally for development and debugging purposes):
 
 ```
-$ ./mvnw spring-boot:run
+$ ./mvnw spring-boot:run; echo $?
+$ #                     ^   ^   ^
+$ #                     |   |   |
+$ # --------------------+---+---+
+$ # Whilst this is not necessary, it's beneficial knowing the exit code.
 ...
 ```
 
 **Run** the microservice using its all-in-one JAR file, built previously by the `package` or `jar` targets:
 
 ```
-$ java -jar target/bus-0.0.1-SNAPSHOT.jar
+$ java -jar target/bus-0.0.1-SNAPSHOT.jar; echo $?
+$ #                                      ^   ^   ^
+$ #                                      |   |   |
+$ # -------------------------------------+---+---+
+$ # Whilst this is not necessary, it's beneficial knowing the exit code.
 ...
 ```
 
