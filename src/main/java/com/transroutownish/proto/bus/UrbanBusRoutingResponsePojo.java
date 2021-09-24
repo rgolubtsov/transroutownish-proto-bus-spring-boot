@@ -20,22 +20,52 @@ package com.transroutownish.proto.bus;
  * @since   0.0.1
  */
 public class UrbanBusRoutingResponsePojo {
-    private final long    from;
-    private final long    to;
+    /** The starting bus stop point. */
+    private final long from;
+
+    /** The ending bus stop point. */
+    private final long to;
+
+    /**
+     * The indicator of the presence of a direct route
+     * from <code>from</code> to <code>to</code>.
+     */
     private final boolean direct;
 
+    /**
+     * The accessor method for the starting bus stop point.
+     *
+     * @return The starting bus stop point.
+     */
     public long getFrom() {
         return from;
     }
 
+    /**
+     * The accessor method for the ending bus stop point.
+     *
+     * @return The ending bus stop point.
+     */
     public long getTo() {
         return to;
     }
 
+    /**
+     * The accessor method for the indicator of the presence of a direct route.
+     *
+     * @return The indicator of the presence of a direct route.
+     */
     public boolean isDirect() {
         return direct;
     }
 
+    /**
+     * The effective constructor.
+     *
+     * @param _from   The starting bus stop point.
+     * @param _to     The ending   bus stop point.
+     * @param _direct The indicator of the presence of a direct route.
+     */
     public UrbanBusRoutingResponsePojo(final long    _from,
                                        final long    _to,
                                        final boolean _direct) {
