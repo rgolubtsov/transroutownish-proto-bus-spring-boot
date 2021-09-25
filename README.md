@@ -28,6 +28,23 @@ $ ./mvnw package
 
 (Note: the `package` target above includes `test`.)
 
+**Build** the microservice using **GNU Make**:
+
+```
+$ make clean
+...
+$ make      # <== Compilation phase.
+...
+$ make test
+...
+$ make jar
+...
+$ make all  # <== Or make all the targets at one pass: compile,.. jar.
+...
+```
+
+(Note: the `jar` target above includes `test`.)
+
 ## Running
 
 **Run** the microservice using **Maven Wrapper** (generally for development and debugging purposes):
