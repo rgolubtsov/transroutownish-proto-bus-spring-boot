@@ -13,12 +13,19 @@
 
 package com.transroutownish.proto.bus;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import static com.transroutownish.proto.bus.UrbanBusRoutingControllerHelper.*;
 
 /**
  * The controller class of the microservice.
@@ -40,6 +47,11 @@ public class UrbanBusRoutingController {
 
     // Extra helper constants.
     private static final String SLASH = "/";
+
+    /** The SLF4J logger. */
+    private static final Logger l = LoggerFactory.getLogger(
+        MethodHandles.lookup().lookupClass()
+    );
 
     /**
      * The &quot;<code>/api/direct</code>&quot; <b>GET</b> endpoint.
@@ -65,6 +77,11 @@ public class UrbanBusRoutingController {
         @RequestParam(name=FROM, defaultValue=ZERO) final String from,
         @RequestParam(name=TO,   defaultValue=ZERO) final String to) {
 
+        l.debug(FROM + EQUALS + BRACES + SPACE + V_BAR + SPACE
+              + TO   + EQUALS + BRACES,
+                from,
+                to);
+
         boolean is_request_malformed = false;
 
         if ((from.compareTo(ZERO) == 0) || (to.compareTo(ZERO) == 0)) {
@@ -80,11 +97,6 @@ public class UrbanBusRoutingController {
         if (is_request_malformed) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
-
-//      l.debug(FROM + EQUALS + BRACES + SPACE + V_BAR + SPACE
-//            + TO   + EQUALS + BRACES,
-//              from,
-//              to);
 
         return new ResponseEntity(HttpStatus.OK);
     }
