@@ -21,10 +21,10 @@ package com.transroutownish.proto.bus;
  */
 public class UrbanBusRoutingResponsePojo {
     /** The starting bus stop point. */
-    private final long from;
+    private final int from; // MAX_VALUE == 2,147,483,647.
 
     /** The ending bus stop point. */
-    private final long to;
+    private final int to;   // MAX_VALUE == 2,147,483,647.
 
     /**
      * The indicator of the presence of a direct route
@@ -37,7 +37,7 @@ public class UrbanBusRoutingResponsePojo {
      *
      * @return The starting bus stop point.
      */
-    public long getFrom() {
+    public int getFrom() {
         return from;
     }
 
@@ -46,7 +46,7 @@ public class UrbanBusRoutingResponsePojo {
      *
      * @return The ending bus stop point.
      */
-    public long getTo() {
+    public int getTo() {
         return to;
     }
 
@@ -66,8 +66,8 @@ public class UrbanBusRoutingResponsePojo {
      * @param _to     The ending   bus stop point.
      * @param _direct The indicator of the presence of a direct route.
      */
-    public UrbanBusRoutingResponsePojo(final long    _from,
-                                       final long    _to,
+    public UrbanBusRoutingResponsePojo(final int     _from,
+                                       final int     _to,
                                        final boolean _direct) {
 
         from   = _from;
