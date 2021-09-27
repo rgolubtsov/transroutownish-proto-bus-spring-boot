@@ -38,12 +38,21 @@ public class UrbanBusRoutingController {
 
     private static final String ZERO = "0";
 
+    // Extra helper constants.
     private static final String SLASH = "/";
 
     /**
      * The &quot;<code>/api/direct</code>&quot; <b>GET</b> endpoint.
      * <br />
-     * <br />Returns .
+     * <br />Returns the response object in the JSON representation,
+     * containing the following properties:
+     * <ul>
+     * <li><strong>from</strong>   &mdash; The starting bus stop point.</li>
+     * <li><strong>to</strong>     &mdash; The ending   bus stop point.</li>
+     * <li><strong>direct</strong> &mdash; The logical indicator
+     * of the presence of a direct route from <code>from</code>
+     * to <code>to</code>.</li>
+     * </ul>
      *
      * @param from The starting bus stop point.
      * @param to   The ending   bus stop point.
