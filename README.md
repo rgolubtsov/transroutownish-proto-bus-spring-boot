@@ -1,4 +1,4 @@
-# Trans-RoutE-Townish (transroutownish) :small_blue_diamond:  
+# Trans-RoutE-Townish (transroutownish) :small_blue_diamond:\
 Urban bus routing microservice prototype
 
 **A Spring Boot-based application, designed and intended to be run as a microservice,
