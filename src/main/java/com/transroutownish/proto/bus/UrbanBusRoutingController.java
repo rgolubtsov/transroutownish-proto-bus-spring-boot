@@ -77,28 +77,54 @@ public class UrbanBusRoutingController {
         @RequestParam(name=FROM, defaultValue=ZERO) final String from,
         @RequestParam(name=TO,   defaultValue=ZERO) final String to) {
 
+        int     _from   = 0;
+        int     _to     = 0;
+        boolean _direct = false;
+
         l.debug(FROM + EQUALS + BRACES + SPACE + V_BAR + SPACE
               + TO   + EQUALS + BRACES,
                 from,
                 to);
 
+        // --------------------------------------------------------------------
+        // --- Parsing and validating request params - Begin ------------------
+        // --------------------------------------------------------------------
         boolean is_request_malformed = false;
+
+        UrbanBusRoutingResponsePojoError resp_body_err = null;
 
         if ((from.compareTo(ZERO) == 0) || (to.compareTo(ZERO) == 0)) {
             is_request_malformed = true;
+        } else {
+            try {
+                _from = Integer.parseInt(from);
+                _to   = Integer.parseInt(to  );
+            } catch (NumberFormatException e) {
+                resp_body_err = new UrbanBusRoutingResponsePojoError(
+                    ERR_REQ_PARAMS_MUST_BE_POSITIVE_INTS);
+
+                return new ResponseEntity(resp_body_err, HttpStatus.BAD_REQUEST);
+            }
         }
 
-        if (   (new Integer(from).intValue() < 0)
-            || (new Integer(to  ).intValue() < 0)) {
-
+        if ((_from < 0) || (_to < 0)) {
             is_request_malformed = true;
         }
 
         if (is_request_malformed) {
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
+            resp_body_err = new UrbanBusRoutingResponsePojoError(
+                ERR_REQ_MALFORMED_CHECK_INPUTS);
 
-        return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity(resp_body_err, HttpStatus.BAD_REQUEST);
+        }
+        // --------------------------------------------------------------------
+        // --- Parsing and validating request params - End --------------------
+        // --------------------------------------------------------------------
+
+        UrbanBusRoutingResponsePojo resp_body
+            = new UrbanBusRoutingResponsePojo(_from, _to, _direct);
+
+        return new ResponseEntity(resp_body, HttpStatus.OK);
     }
 }
 
