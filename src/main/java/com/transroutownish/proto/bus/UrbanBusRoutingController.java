@@ -105,10 +105,10 @@ public class UrbanBusRoutingController {
 
                 return new ResponseEntity(resp_body_err, HttpStatus.BAD_REQUEST);
             }
-        }
 
-        if ((_from < 0) || (_to < 0)) {
-            is_request_malformed = true;
+            if ((_from < 0) || (_to < 0)) {
+                is_request_malformed = true;
+            }
         }
 
         if (is_request_malformed) {
