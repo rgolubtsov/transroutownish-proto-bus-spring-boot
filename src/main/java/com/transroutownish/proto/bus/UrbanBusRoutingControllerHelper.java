@@ -26,6 +26,12 @@ public class UrbanBusRoutingControllerHelper {
     public static final String BRACES = "{}";
     public static final String SPACE  =  " ";
     public static final String V_BAR  =  "|";
+
+    // Common error messages.
+    public static final String ERR_REQ_PARAMS_MUST_BE_POSITIVE_INTS = "Request parameters must be "
+                                                                    + "positive integer values.";
+    public static final String ERR_REQ_MALFORMED_CHECK_INPUTS       = "Request is malformed. "
+                                                                    + "Please check input values.";
 }
 
 // vim:set nu et ts=4 sw=4:
