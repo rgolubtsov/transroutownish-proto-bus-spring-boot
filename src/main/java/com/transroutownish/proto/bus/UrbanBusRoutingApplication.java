@@ -16,6 +16,12 @@ package com.transroutownish.proto.bus;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 
+import java.io.File;
+
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+
 /**
  * The startup class of the microservice.
  *
@@ -24,12 +30,36 @@ import org.springframework.boot.SpringApplication;
  */
 @SpringBootApplication
 public class UrbanBusRoutingApplication {
+    /** The filename of the sample routes data store. */
+    private static final String SAMPLE_ROUTES = "./data/routes.txt";
+
+    /** The list, containing all available routes. */
+    public static List<String> routes_list;
+
     /**
      * The microservice entry point.
      *
      * @param args The array of command-line arguments.
      */
     public static void main(final String[] args) {
+        Scanner routes = null;
+
+        File data = new File(SAMPLE_ROUTES);
+
+        try {
+            routes = new Scanner(data);
+        } catch (java.io.FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        routes_list = new ArrayList();
+
+        while (routes.hasNext()) {
+            routes_list.add(routes.nextLine());
+        }
+
+        routes.close();
+
         // Starting up the app.
         SpringApplication.run(UrbanBusRoutingApplication.class, args);
     }

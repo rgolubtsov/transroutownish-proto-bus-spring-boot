@@ -22,16 +22,16 @@ package com.transroutownish.proto.bus;
  */
 public class UrbanBusRoutingControllerHelper {
     // Helper constants.
+    public static final String SLASH  =  "/";
     public static final String EQUALS =  "=";
     public static final String BRACES = "{}";
     public static final String SPACE  =  " ";
     public static final String V_BAR  =  "|";
 
     // Common error messages.
-    public static final String ERR_REQ_PARAMS_MUST_BE_POSITIVE_INTS = "Request parameters must be "
-                                                                    + "positive integer values.";
-    public static final String ERR_REQ_MALFORMED_CHECK_INPUTS       = "Request is malformed. "
-                                                                    + "Please check input values.";
+    public static final String ERR_REQ_PARAMS_MUST_BE_POSITIVE_INTS
+        = "Request parameters must take positive integer values, "
+        + "in the range 1 .. 2,147,483,647. Please check your inputs.";
 }
 
 // vim:set nu et ts=4 sw=4:
