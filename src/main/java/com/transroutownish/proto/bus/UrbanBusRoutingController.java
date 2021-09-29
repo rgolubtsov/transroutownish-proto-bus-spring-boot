@@ -43,10 +43,8 @@ public class UrbanBusRoutingController {
     private static final String FROM = "from";
     private static final String TO   = "to";
 
-    private static final String ZERO = "0";
-
     // Extra helper constants.
-    private static final String SLASH = "/";
+    private static final String ZERO = "0";
 
     /** The SLF4J logger. */
     private static final Logger l = LoggerFactory.getLogger(
@@ -91,29 +89,21 @@ public class UrbanBusRoutingController {
         // --------------------------------------------------------------------
         boolean is_request_malformed = false;
 
-        UrbanBusRoutingResponsePojoError resp_body_err = null;
+        try {
+            _from = Integer.parseInt(from);
+            _to   = Integer.parseInt(to  );
 
-        if ((from.compareTo(ZERO) == 0) || (to.compareTo(ZERO) == 0)) {
-            is_request_malformed = true;
-        } else {
-            try {
-                _from = Integer.parseInt(from);
-                _to   = Integer.parseInt(to  );
-            } catch (NumberFormatException e) {
-                resp_body_err = new UrbanBusRoutingResponsePojoError(
-                    ERR_REQ_PARAMS_MUST_BE_POSITIVE_INTS);
-
-                return new ResponseEntity(resp_body_err, HttpStatus.BAD_REQUEST);
-            }
-
-            if ((_from < 0) || (_to < 0)) {
+            if ((_from < 1) || (_to < 1)) {
                 is_request_malformed = true;
             }
+        } catch (NumberFormatException e) {
+            is_request_malformed = true;
         }
 
         if (is_request_malformed) {
-            resp_body_err = new UrbanBusRoutingResponsePojoError(
-                ERR_REQ_MALFORMED_CHECK_INPUTS);
+            UrbanBusRoutingResponsePojoError resp_body_err
+                = new UrbanBusRoutingResponsePojoError(
+                    ERR_REQ_PARAMS_MUST_BE_POSITIVE_INTS);
 
             return new ResponseEntity(resp_body_err, HttpStatus.BAD_REQUEST);
         }
