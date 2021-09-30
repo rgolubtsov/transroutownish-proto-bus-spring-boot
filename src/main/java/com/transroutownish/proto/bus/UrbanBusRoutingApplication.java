@@ -30,7 +30,7 @@ import java.util.ArrayList;
  */
 @SpringBootApplication
 public class UrbanBusRoutingApplication {
-    /** The filename of the sample routes data store. */
+    /** The path and filename of the sample routes data store. */
     private static final String SAMPLE_ROUTES = "./data/routes.txt";
 
     /** The list, containing all available routes. */
@@ -44,7 +44,12 @@ public class UrbanBusRoutingApplication {
     public static void main(final String[] args) {
         Scanner routes = null;
 
-        File data = new File(SAMPLE_ROUTES);
+        String datastore = SAMPLE_ROUTES;
+
+        // TODO: Implement getting the path and filename
+        //       of the routes data store from app props.
+
+        File data = new File(datastore);
 
         try {
             routes = new Scanner(data);
