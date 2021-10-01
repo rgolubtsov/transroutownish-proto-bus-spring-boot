@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import static com.transroutownish.proto.bus.UrbanBusRoutingControllerHelper.*;
+
 /**
  * The startup class of the microservice.
  *
@@ -44,10 +46,11 @@ public class UrbanBusRoutingApplication {
     public static void main(final String[] args) {
         Scanner routes = null;
 
-        String datastore = SAMPLE_ROUTES;
+        // Getting the path and filename of the routes data store
+        // from application properties.
+        String datastore = get_routes_datastore();
 
-        // TODO: Implement getting the path and filename
-        //       of the routes data store from app props.
+        if (datastore == null) { datastore = SAMPLE_ROUTES; }
 
         File data = new File(datastore);
 
