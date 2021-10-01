@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import static com.transroutownish.proto.bus.UrbanBusRoutingControllerHelper.*;
+
 /**
  * The startup class of the microservice.
  *
@@ -30,7 +32,7 @@ import java.util.ArrayList;
  */
 @SpringBootApplication
 public class UrbanBusRoutingApplication {
-    /** The filename of the sample routes data store. */
+    /** The path and filename of the sample routes data store. */
     private static final String SAMPLE_ROUTES = "./data/routes.txt";
 
     /** The list, containing all available routes. */
@@ -44,7 +46,13 @@ public class UrbanBusRoutingApplication {
     public static void main(final String[] args) {
         Scanner routes = null;
 
-        File data = new File(SAMPLE_ROUTES);
+        // Getting the path and filename of the routes data store
+        // from application properties.
+        String datastore = get_routes_datastore();
+
+        if (datastore == null) { datastore = SAMPLE_ROUTES; }
+
+        File data = new File(datastore);
 
         try {
             routes = new Scanner(data);
