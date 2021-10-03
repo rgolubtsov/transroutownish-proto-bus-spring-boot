@@ -35,6 +35,13 @@ public class UrbanBusRoutingApplication {
     /** The path and filename of the sample routes data store. */
     private static final String SAMPLE_ROUTES = "./data/routes.txt";
 
+    /**
+     * The regex pattern for the element to be excluded
+     * from a bus stops sequence: it is an arbitrary identifier
+     * of a route, which is not used in the routes processing anyhow.
+     */
+    private static final String ROUTE_ID_REGEX = "^\\d+\\s";
+
     /** The list, containing all available routes. */
     public static List<String> routes_list;
 
@@ -62,8 +69,9 @@ public class UrbanBusRoutingApplication {
 
         routes_list = new ArrayList();
 
-        while (routes.hasNext()) {
-            routes_list.add(routes.nextLine());
+        while (routes.hasNextLine()) {
+            routes_list.add(routes.nextLine()
+                .replaceFirst(ROUTE_ID_REGEX, EMPTY_STRING));
         }
 
         routes.close();
