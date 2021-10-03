@@ -149,10 +149,9 @@ public class UrbanBusRoutingController {
 
         String route = EMPTY_STRING;
 
-        for (int i = 0;
-                 i < UrbanBusRoutingApplication.routes_list.size();
-                 i++) {
+        int routes_count = UrbanBusRoutingApplication.routes_list.size();
 
+        for (int i = 0; i < routes_count; i++) {
             route = UrbanBusRoutingApplication.routes_list.get(i);
 
             l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES, route);
