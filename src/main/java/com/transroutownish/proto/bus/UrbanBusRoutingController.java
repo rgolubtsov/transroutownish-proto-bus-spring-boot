@@ -111,12 +111,23 @@ public class UrbanBusRoutingController {
         // --- Parsing and validating request params - End --------------------
         // --------------------------------------------------------------------
 
+        String route = EMPTY_STRING;
+
         for (int i = 0;
                  i < UrbanBusRoutingApplication.routes_list.size();
                  i++) {
 
-            l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES,
-                UrbanBusRoutingApplication.routes_list.get(i));
+            route = UrbanBusRoutingApplication.routes_list.get(i);
+
+            l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES, route);
+
+            if (route.contains(from)) {
+                if (route.contains(to)) {
+                    _direct = true;
+
+                    break;
+                }
+            }
         }
 
         UrbanBusRoutingResponsePojo resp_body
