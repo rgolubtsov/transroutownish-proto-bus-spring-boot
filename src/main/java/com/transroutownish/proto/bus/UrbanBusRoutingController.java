@@ -46,6 +46,18 @@ public class UrbanBusRoutingController {
     // Extra helper constants.
     private static final String ZERO = "0";
 
+    /**
+     * The regex pattern for the leading part of a bus stops sequence,
+     * before the matching element.
+     */
+    private static final String SEQ1_REGEX = ".*\\s";
+
+    /**
+     * The regex pattern for the trailing part of a bus stops sequence,
+     * after the matching element.
+     */
+    private static final String SEQ2_REGEX = "\\s.*";
+
     /** The SLF4J logger. */
     private static final Logger l = LoggerFactory.getLogger(
         MethodHandles.lookup().lookupClass()
@@ -67,17 +79,17 @@ public class UrbanBusRoutingController {
      * @param from The starting bus stop point.
      * @param to   The ending   bus stop point.
      *
-     * @return The ResponseEntity object with a specific
-     *         HTTP status code provided.
+     * @return The ResponseEntity object, containing the response body
+     *         in JSON representation, along with a specific HTTP status code
+     *         provided.
      */
     @GetMapping(REST_PREFIX + SLASH + REST_DIRECT)
     public ResponseEntity get_direct_route(
         @RequestParam(name=FROM, defaultValue=ZERO) final String from,
         @RequestParam(name=TO,   defaultValue=ZERO) final String to) {
 
-        int     _from   = 0;
-        int     _to     = 0;
-        boolean _direct = false;
+        int _from = 0;
+        int _to   = 0;
 
         l.debug(FROM + EQUALS + BRACES + SPACE + V_BAR + SPACE
               + TO   + EQUALS + BRACES,
@@ -111,18 +123,49 @@ public class UrbanBusRoutingController {
         // --- Parsing and validating request params - End --------------------
         // --------------------------------------------------------------------
 
-        for (int i = 0;
-                 i < UrbanBusRoutingApplication.routes_list.size();
-                 i++) {
-
-            l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES,
-                UrbanBusRoutingApplication.routes_list.get(i));
-        }
+        // Performing the routes processing to find out the direct route.
+        boolean direct = find_direct_route(String.valueOf(_from),
+                                           String.valueOf(_to  ));
 
         UrbanBusRoutingResponsePojo resp_body
-            = new UrbanBusRoutingResponsePojo(_from, _to, _direct);
+            = new UrbanBusRoutingResponsePojo(_from, _to, direct);
 
         return new ResponseEntity(resp_body, HttpStatus.OK);
+    }
+
+    /**
+     * Performs the routes processing (onto bus stops sequences) to identify
+     * and return whether a particular interval between two bus stop points
+     * given is direct (i.e. contains in any of the routes), or not.
+     *
+     * @param from The starting bus stop point.
+     * @param to   The ending   bus stop point.
+     *
+     * @return <code>true</code> if the direct route is found,
+     *         <code>false</code> otherwise.
+     */
+    private boolean find_direct_route(final String from, final String to) {
+        boolean direct = false;
+
+        String route = EMPTY_STRING;
+
+        int routes_count = UrbanBusRoutingApplication.routes_list.size();
+
+        for (int i = 0; i < routes_count; i++) {
+            route = UrbanBusRoutingApplication.routes_list.get(i);
+
+            l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES, route);
+
+            if (route.matches(SEQ1_REGEX + from + SEQ2_REGEX)) {
+                if (route.matches(SEQ1_REGEX + to + SEQ2_REGEX)) {
+                    direct = true;
+
+                    break;
+                }
+            }
+        }
+
+        return direct;
     }
 }
 
