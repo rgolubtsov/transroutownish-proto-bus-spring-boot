@@ -46,6 +46,18 @@ public class UrbanBusRoutingController {
     // Extra helper constants.
     private static final String ZERO = "0";
 
+    /**
+     * The regex pattern for the leading part of a bus stops sequence,
+     * before the matching element.
+     */
+    private static final String SEQ1_REGEX = ".*\\s";
+
+    /**
+     * The regex pattern for the trailing part of a bus stops sequence,
+     * after the matching element.
+     */
+    private static final String SEQ2_REGEX = "\\s.*";
+
     /** The SLF4J logger. */
     private static final Logger l = LoggerFactory.getLogger(
         MethodHandles.lookup().lookupClass()
@@ -124,8 +136,8 @@ public class UrbanBusRoutingController {
 
             l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES, route);
 
-            if (route.contains(from_s)) {
-                if (route.contains(to_s)) {
+            if (route.matches(SEQ1_REGEX + from_s + SEQ2_REGEX)) {
+                if (route.matches(SEQ1_REGEX + to_s + SEQ2_REGEX)) {
                     direct = true;
 
                     break;
