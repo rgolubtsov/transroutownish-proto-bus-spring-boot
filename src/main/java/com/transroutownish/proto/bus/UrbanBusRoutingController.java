@@ -79,17 +79,17 @@ public class UrbanBusRoutingController {
      * @param from The starting bus stop point.
      * @param to   The ending   bus stop point.
      *
-     * @return The ResponseEntity object with a specific
-     *         HTTP status code provided.
+     * @return The ResponseEntity object, containing the response body
+     *         in JSON representation, along with a specific HTTP status code
+     *         provided.
      */
     @GetMapping(REST_PREFIX + SLASH + REST_DIRECT)
     public ResponseEntity get_direct_route(
         @RequestParam(name=FROM, defaultValue=ZERO) final String from,
         @RequestParam(name=TO,   defaultValue=ZERO) final String to) {
 
-        int     from_i = 0;
-        int     to_i   = 0;
-        boolean direct = false;
+        int _from = 0;
+        int _to   = 0;
 
         l.debug(FROM + EQUALS + BRACES + SPACE + V_BAR + SPACE
               + TO   + EQUALS + BRACES,
@@ -102,10 +102,10 @@ public class UrbanBusRoutingController {
         boolean is_request_malformed = false;
 
         try {
-            from_i = Integer.parseInt(from);
-            to_i   = Integer.parseInt(to  );
+            _from = Integer.parseInt(from);
+            _to   = Integer.parseInt(to  );
 
-            if ((from_i < 1) || (to_i < 1)) {
+            if ((_from < 1) || (_to < 1)) {
                 is_request_malformed = true;
             }
         } catch (NumberFormatException e) {
@@ -123,10 +123,31 @@ public class UrbanBusRoutingController {
         // --- Parsing and validating request params - End --------------------
         // --------------------------------------------------------------------
 
-        String route = EMPTY_STRING;
+        // Performing the routes processing to find out the direct route.
+        boolean direct = find_direct_route(String.valueOf(_from),
+                                           String.valueOf(_to  ));
 
-        String from_s = String.valueOf(from_i);
-        String to_s   = String.valueOf(to_i  );
+        UrbanBusRoutingResponsePojo resp_body
+            = new UrbanBusRoutingResponsePojo(_from, _to, direct);
+
+        return new ResponseEntity(resp_body, HttpStatus.OK);
+    }
+
+    /**
+     * Performs the routes processing (onto bus stops sequences) to identify
+     * and return whether a particular interval between two bus stop points
+     * given is direct (i.e. contains in any of the routes), or not.
+     *
+     * @param from The starting bus stop point.
+     * @param to   The ending   bus stop point.
+     *
+     * @return <code>true</code> if the direct route is found,
+     *         <code>false</code> otherwise.
+     */
+    private boolean find_direct_route(final String from, final String to) {
+        boolean direct = false;
+
+        String route = EMPTY_STRING;
 
         for (int i = 0;
                  i < UrbanBusRoutingApplication.routes_list.size();
@@ -136,8 +157,8 @@ public class UrbanBusRoutingController {
 
             l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES, route);
 
-            if (route.matches(SEQ1_REGEX + from_s + SEQ2_REGEX)) {
-                if (route.matches(SEQ1_REGEX + to_s + SEQ2_REGEX)) {
+            if (route.matches(SEQ1_REGEX + from + SEQ2_REGEX)) {
+                if (route.matches(SEQ1_REGEX + to + SEQ2_REGEX)) {
                     direct = true;
 
                     break;
@@ -145,10 +166,7 @@ public class UrbanBusRoutingController {
             }
         }
 
-        UrbanBusRoutingResponsePojo resp_body
-            = new UrbanBusRoutingResponsePojo(from_i, to_i, direct);
-
-        return new ResponseEntity(resp_body, HttpStatus.OK);
+        return direct;
     }
 }
 
