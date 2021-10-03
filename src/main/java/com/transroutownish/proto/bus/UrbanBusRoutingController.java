@@ -75,9 +75,9 @@ public class UrbanBusRoutingController {
         @RequestParam(name=FROM, defaultValue=ZERO) final String from,
         @RequestParam(name=TO,   defaultValue=ZERO) final String to) {
 
-        int     _from   = 0;
-        int     _to     = 0;
-        boolean _direct = false;
+        int     from_i = 0;
+        int     to_i   = 0;
+        boolean direct = false;
 
         l.debug(FROM + EQUALS + BRACES + SPACE + V_BAR + SPACE
               + TO   + EQUALS + BRACES,
@@ -90,10 +90,10 @@ public class UrbanBusRoutingController {
         boolean is_request_malformed = false;
 
         try {
-            _from = Integer.parseInt(from);
-            _to   = Integer.parseInt(to  );
+            from_i = Integer.parseInt(from);
+            to_i   = Integer.parseInt(to  );
 
-            if ((_from < 1) || (_to < 1)) {
+            if ((from_i < 1) || (to_i < 1)) {
                 is_request_malformed = true;
             }
         } catch (NumberFormatException e) {
@@ -113,6 +113,9 @@ public class UrbanBusRoutingController {
 
         String route = EMPTY_STRING;
 
+        String from_s = String.valueOf(from_i);
+        String to_s   = String.valueOf(to_i  );
+
         for (int i = 0;
                  i < UrbanBusRoutingApplication.routes_list.size();
                  i++) {
@@ -121,9 +124,9 @@ public class UrbanBusRoutingController {
 
             l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES, route);
 
-            if (route.contains(from)) {
-                if (route.contains(to)) {
-                    _direct = true;
+            if (route.contains(from_s)) {
+                if (route.contains(to_s)) {
+                    direct = true;
 
                     break;
                 }
@@ -131,7 +134,7 @@ public class UrbanBusRoutingController {
         }
 
         UrbanBusRoutingResponsePojo resp_body
-            = new UrbanBusRoutingResponsePojo(_from, _to, _direct);
+            = new UrbanBusRoutingResponsePojo(from_i, to_i, direct);
 
         return new ResponseEntity(resp_body, HttpStatus.OK);
     }
