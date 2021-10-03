@@ -10,6 +10,7 @@
 * **[Building](#building)**
 * **[Running](#running)**
 * **[Operating](#operating)**
+  * **[Error handling](#error-handling)**
 
 ## Building
 
@@ -99,4 +100,20 @@ The direct route is not found:
 ```
 $ curl 'http://localhost:8080/api/direct?from=82&to=35390'
 {"from":82,"to":35390,"direct":false}
+```
+
+### Error handling
+
+When the query string passed in a request, contains inappropriate input, or the URI endpoint doesn't contain anything else at all after its path, the microservice will respond with the **HTTP 400 Bad Request** status code, including the response body in JSON representation, like the following:
+
+```
+$ curl 'http://localhost:8080/api/direct?from=qwerty4838&to=-i-.;--089asdf../nj524987'
+{"error":"Request parameters must take positive integer values, in the range 1 .. 2,147,483,647. Please check your inputs."}
+```
+
+Or simply:
+
+```
+$ curl http://localhost:8080/api/direct
+{"error":"Request parameters must take positive integer values, in the range 1 .. 2,147,483,647. Please check your inputs."}
 ```
