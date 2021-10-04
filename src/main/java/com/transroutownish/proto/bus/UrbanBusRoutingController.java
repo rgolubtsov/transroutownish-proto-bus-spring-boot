@@ -1,7 +1,7 @@
 /*
  * src/main/java/com/transroutownish/proto/bus/UrbanBusRoutingController.java
  * ============================================================================
- * Urban bus routing microservice prototype. Version 0.0.1
+ * Urban bus routing microservice prototype. Version 0.9.9
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing a simple urban bus routing prototype.
@@ -30,7 +30,7 @@ import static com.transroutownish.proto.bus.UrbanBusRoutingControllerHelper.*;
 /**
  * The controller class of the microservice.
  *
- * @version 0.0.1
+ * @version 0.9.9
  * @since   0.0.1
  */
 @RestController
@@ -146,6 +146,9 @@ public class UrbanBusRoutingController {
      */
     private boolean find_direct_route(final String from, final String to) {
         boolean direct = false;
+
+        // Two bus stop points in a route cannot point up to the same value.
+        if (from.compareTo(to) == 0) { return direct; }
 
         String route = EMPTY_STRING, route_from = EMPTY_STRING;
 

@@ -1,7 +1,7 @@
 #
 # Makefile
 # =============================================================================
-# Urban bus routing microservice prototype. Version 0.0.1
+# Urban bus routing microservice prototype. Version 0.9.9
 # =============================================================================
 # A Spring Boot-based application, designed and intended to be run
 # as a microservice, implementing a simple urban bus routing prototype.
