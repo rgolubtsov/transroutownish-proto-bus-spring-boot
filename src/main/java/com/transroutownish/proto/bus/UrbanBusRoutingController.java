@@ -91,10 +91,10 @@ public class UrbanBusRoutingController {
         int _from = 0;
         int _to   = 0;
 
-        l.debug(FROM + EQUALS + BRACES + SPACE + V_BAR + SPACE
-              + TO   + EQUALS + BRACES,
-                from,
-                to);
+//      l.debug(FROM + EQUALS + BRACES + SPACE + V_BAR + SPACE
+//            + TO   + EQUALS + BRACES,
+//              from,
+//              to);
 
         // --------------------------------------------------------------------
         // --- Parsing and validating request params - Begin ------------------
@@ -157,7 +157,7 @@ public class UrbanBusRoutingController {
         for (int i = 0; i < routes_count; i++) {
             route = UrbanBusRoutingApplication.routes_list.get(i);
 
-            l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES, route);
+//          l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES, route);
 
             if (route.matches(SEQ1_REGEX + from + SEQ2_REGEX)) {
                 // Pinning in the starting bus stop point, if it's found.
@@ -165,8 +165,8 @@ public class UrbanBusRoutingController {
                 // on the current route, beginning at the pinned point.
                 route_from = route.substring(route.indexOf(from));
 
-                l.debug(BRACES + SPACE + V_BAR + SPACE + BRACES,
-                        from, route_from);
+//              l.debug(BRACES + SPACE + V_BAR + SPACE + BRACES,
+//                      from, route_from);
 
                 if (route_from.matches(SEQ1_REGEX + to + SEQ2_REGEX)) {
                     direct = true; break;
