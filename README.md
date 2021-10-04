@@ -69,10 +69,10 @@ $ # Whilst this is not necessary, it's beneficial knowing the exit code.
 **Run** the microservice using its all-in-one JAR file, built previously by the `package` or `jar` targets:
 
 ```
-$ java -jar target/bus-0.0.1-SNAPSHOT.jar; echo $?
-$ #                                      ^   ^   ^
-$ #                                      |   |   |
-$ # -------------------------------------+---+---+
+$ java -jar target/bus-0.9.9.jar; echo $?
+$ #                             ^   ^   ^
+$ #                             |   |   |
+$ # ----------------------------+---+---+
 $ # Whilst this is not necessary, it's beneficial knowing the exit code.
 ...
 ```
