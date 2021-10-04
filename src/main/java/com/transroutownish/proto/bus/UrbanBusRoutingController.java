@@ -147,7 +147,7 @@ public class UrbanBusRoutingController {
     private boolean find_direct_route(final String from, final String to) {
         boolean direct = false;
 
-        String route = EMPTY_STRING;
+        String route = EMPTY_STRING, route_from = EMPTY_STRING;
 
         int routes_count = UrbanBusRoutingApplication.routes_list.size();
 
@@ -157,10 +157,16 @@ public class UrbanBusRoutingController {
             l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES, route);
 
             if (route.matches(SEQ1_REGEX + from + SEQ2_REGEX)) {
-                if (route.matches(SEQ1_REGEX + to + SEQ2_REGEX)) {
-                    direct = true;
+                // Pinning in the starting bus stop point, if it's found.
+                // Next, searching for the ending bus stop point
+                // on the current route, beginning at the pinned point.
+                route_from = route.substring(route.indexOf(from));
 
-                    break;
+                l.debug(BRACES + SPACE + V_BAR + SPACE + BRACES,
+                        from, route_from);
+
+                if (route_from.matches(SEQ1_REGEX + to + SEQ2_REGEX)) {
+                    direct = true; break;
                 }
             }
         }
