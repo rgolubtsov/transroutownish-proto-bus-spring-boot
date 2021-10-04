@@ -147,6 +147,9 @@ public class UrbanBusRoutingController {
     private boolean find_direct_route(final String from, final String to) {
         boolean direct = false;
 
+        // Two bus stop points in a route cannot point up to the same value.
+        if (from.compareTo(to) == 0) { return direct; }
+
         String route = EMPTY_STRING, route_from = EMPTY_STRING;
 
         int routes_count = UrbanBusRoutingApplication.routes_list.size();
