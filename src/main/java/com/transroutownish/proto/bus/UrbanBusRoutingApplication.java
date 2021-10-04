@@ -40,7 +40,7 @@ public class UrbanBusRoutingApplication {
      * from a bus stops sequence: it is an arbitrary identifier
      * of a route, which is not used in the routes processing anyhow.
      */
-    private static final String ROUTE_ID_REGEX = "^\\d+\\s";
+    private static final String ROUTE_ID_REGEX = "^\\d+";
 
     /** The list, containing all available routes. */
     public static List<String> routes_list;
@@ -71,7 +71,7 @@ public class UrbanBusRoutingApplication {
 
         while (routes.hasNextLine()) {
             routes_list.add(routes.nextLine()
-                .replaceFirst(ROUTE_ID_REGEX, EMPTY_STRING));
+                .replaceFirst(ROUTE_ID_REGEX, EMPTY_STRING) + SPACE);
         }
 
         routes.close();
