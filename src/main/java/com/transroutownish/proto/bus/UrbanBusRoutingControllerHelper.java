@@ -14,6 +14,11 @@
 
 package com.transroutownish.proto.bus;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
+
 import java.io.InputStream;
 
 import java.util.Properties;
@@ -34,6 +39,11 @@ public class UrbanBusRoutingControllerHelper {
     public static final String V_BAR        =  "|";
 
     // Common error messages.
+    public static final String ERR_DATASTORE_NOT_LOADED_USE_DEFAULT
+        = "Data store specified could not be loaded. "
+        + "Using default data store.";
+    public static final String ERR_DATASTORE_NOT_FOUND
+        = "FATAL: Data store file not found. Quitting...";
     public static final String ERR_REQ_PARAMS_MUST_BE_POSITIVE_INTS
         = "Request parameters must take positive integer values, "
         + "in the range 1 .. 2,147,483,647. Please check your inputs.";
@@ -45,6 +55,11 @@ public class UrbanBusRoutingControllerHelper {
     private static final String PATH_PREFIX = "routes.datastore.path.prefix";
     private static final String PATH_DIR    = "routes.datastore.path.dir";
     private static final String FILENAME    = "routes.datastore.filename";
+
+    /** The SLF4J logger. */
+    private static final Logger l = LoggerFactory.getLogger(
+        MethodHandles.lookup().lookupClass()
+    );
 
     /**
      * Retrieves the path and filename of the routes data store
@@ -67,7 +82,7 @@ public class UrbanBusRoutingControllerHelper {
             props.load(data);
             data.close();
         } catch (java.io.IOException e) {
-            e.printStackTrace();
+            l.error(ERR_DATASTORE_NOT_LOADED_USE_DEFAULT);
         }
 
         String path_prefix = props.getProperty(PATH_PREFIX);
