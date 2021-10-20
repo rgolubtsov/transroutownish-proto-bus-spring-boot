@@ -13,6 +13,11 @@
 
 package com.transroutownish.proto.bus;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 
@@ -42,6 +47,11 @@ public class UrbanBusRoutingApplication {
      */
     private static final String ROUTE_ID_REGEX = "^\\d+";
 
+    /** The SLF4J logger. */
+    private static final Logger l = LoggerFactory.getLogger(
+        MethodHandles.lookup().lookupClass()
+    );
+
     /** The list, containing all available routes. */
     public static List<String> routes_list;
 
@@ -64,7 +74,7 @@ public class UrbanBusRoutingApplication {
         try {
             routes = new Scanner(data);
         } catch (java.io.FileNotFoundException e) {
-            e.printStackTrace();
+            l.error(ERR_DATASTORE_NOT_FOUND);
         }
 
         routes_list = new ArrayList();
