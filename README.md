@@ -14,11 +14,11 @@
 
 ## Building
 
-The microservice is known to be built and run successfully under **Ubuntu Server (Ubuntu 20.04.3 LTS x86-64)**. Install the necessary dependencies (`openjdk-11-jdk-headless`, `make`):
+The microservice is known to be built and run successfully under **Ubuntu Server (Ubuntu 20.04.3 LTS x86-64)**. Install the necessary dependencies (`openjdk-11-jdk-headless`, `make`, `docker.io`):
 
 ```
 $ sudo apt-get update && \
-  sudo apt-get install openjdk-11-jdk-headless make -y
+  sudo apt-get install openjdk-11-jdk-headless make docker.io -y
 ```
 
 **Build** the microservice using **Maven Wrapper**:
@@ -53,6 +53,15 @@ $ make all  # <== Or make all the targets at one pass: compile,.. jar.
 
 (Note: the `jar` target above includes `test`.)
 
+### Creating a Docker image
+
+**Build** a Docker image for the microservice:
+
+```
+$ sudo docker build -ttransroutownish/bus .
+...
+```
+
 ## Running
 
 **Run** the microservice using **Maven Wrapper** (generally for development and debugging purposes):
@@ -74,6 +83,15 @@ $ #                             ^   ^   ^
 $ #                             |   |   |
 $ # ----------------------------+---+---+
 $ # Whilst this is not necessary, it's beneficial knowing the exit code.
+...
+```
+
+### Running a Docker image
+
+**Run** a Docker image of the microservice:
+
+```
+$ sudo docker run -p8080:8080 transroutownish/bus
 ...
 ```
 
