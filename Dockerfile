@@ -12,8 +12,9 @@
 #
 
 FROM       azul/zulu-openjdk-alpine:11-jre-headless
-VOLUME     /tmp
+WORKDIR    var/tmp
 COPY       target/*.jar bus.jar
-ENTRYPOINT ["java", "-jar", "/bus.jar"]
+COPY       data         data/
+ENTRYPOINT ["java", "-jar", "bus.jar"]
 
 # vim:set nu ts=4 sw=4:
