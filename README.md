@@ -91,8 +91,44 @@ $ # Whilst this is not necessary, it's beneficial knowing the exit code.
 **Run** a Docker image of the microservice:
 
 ```
-$ sudo docker run -p8080:8080 transroutownish/bus
+$ sudo PORT=8080 docker run -p${PORT}:${PORT} --name bus transroutownish/bus; echo $?
 ...
+```
+
+### Exploring a Docker image payload
+
+The following is not necessary but might be considered interesting &mdash; to look up into the running container, and check out that the microservice's JAR, log, and routes data store are at their expected places and in effect:
+
+```
+$ sudo docker ps
+CONTAINER ID   IMAGE                 COMMAND               CREATED             STATUS             PORTS                                       NAMES
+<container_id> transroutownish/bus   "java -jar bus.jar"   About an hour ago   Up About an hour   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   bus
+$
+$ sudo docker exec -ti bus sh; echo $?
+/var/tmp #
+/var/tmp # ls -al
+total 17544
+drwxrwxrwt    1 root     root          4096 Oct 25 00:00 .
+drwxr-xr-x    1 root     root          4096 Aug 27 00:00 ..
+-rw-rw-r--    1 root     root      17941043 Oct 25 00:00 bus.jar
+drwxr-xr-x    2 root     root          4096 Oct 25 00:00 data
+drwxr-xr-x    2 root     root          4096 Oct 25 00:00 log
+/var/tmp #
+/var/tmp # ls -al data/ log/
+data/:
+total 56
+drwxr-xr-x    2 root     root          4096 Oct 25 00:00 .
+drwxrwxrwt    1 root     root          4096 Oct 25 00:00 ..
+-rw-rw-r--    1 root     root         46218 Oct 25 00:00 routes.txt
+
+log/:
+total 12
+drwxr-xr-x    2 root     root          4096 Oct 25 00:00 .
+drwxrwxrwt    1 root     root          4096 Oct 25 00:00 ..
+-rw-r--r--    1 root     root           447 Oct 25 00:00 bus.log
+/var/tmp #
+/var/tmp # exit # Or simply <Ctrl-D>.
+0
 ```
 
 ## Operating
