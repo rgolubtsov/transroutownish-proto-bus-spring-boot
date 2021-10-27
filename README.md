@@ -95,6 +95,17 @@ $ sudo PORT=8080 docker run -p${PORT}:${PORT} --name bus transroutownish/bus; ec
 ...
 ```
 
+If Docker will complain that the container name is already in use (after subsequent creation of a new container), like the following:
+
+```
+docker: Error response from daemon: Conflict.
+        The container name "/bus" is already in use by container "<container_id>".
+        You have to remove (or rename) that container to be able to reuse that name.
+...
+```
+
+...it's safe to remove that container: `$ sudo docker rm bus`, and run the image once again.
+
 ### Exploring a Docker image payload
 
 The following is not necessary but might be considered interesting &mdash; to look up into the running container, and check out that the microservice's JAR, log, and routes data store are at their expected places and in effect:
@@ -137,10 +148,10 @@ All the routes are contained in a so called **routes data store**. It is located
 
 **Identify**, whether there is a direct route between two bus stops with IDs given in the **HTTP GET** request, searching for them against the underlying **routes data store**:
 
-HTTP request param | Sample value | Another sample value
------------------- | ------------ | --------------------
-`from`             | `4838`       | `82`
-`to`               | `524987`     | `35390`
+HTTP request param | Sample value | Another sample value | Yet another sample value
+------------------ | ------------ | -------------------- | ------------------------
+`from`             | `4838`       | `82`                 | `2147483647`
+`to`               | `524987`     | `35390`              | `1`
 
 The direct route is found:
 
