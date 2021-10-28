@@ -106,6 +106,14 @@ docker: Error response from daemon: Conflict.
 
 ...it's safe to remove that container: `$ sudo docker rm bus`, and run the image once again.
 
+But even better, a Docker image might be run by issuing a compound command, beginning with deleting all stopped containers:
+
+```
+$ sudo docker rm `sudo docker ps -aq` && \
+  sudo PORT=8080 docker run -p${PORT}:${PORT} --name bus transroutownish/bus; echo $?
+...
+```
+
 ### Exploring a Docker image payload
 
 The following is not necessary but might be considered interesting &mdash; to look up into the running container, and check out that the microservice's JAR, log, and routes data store are at their expected places and in effect:
