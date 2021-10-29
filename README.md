@@ -106,11 +106,11 @@ docker: Error response from daemon: Conflict.
 
 ...it's safe to remove that container: `$ sudo docker rm bus`, and run the image once again.
 
-But even better, a Docker image might be run by issuing a compound command, beginning with deleting all stopped containers:
+Yet even better, a Docker image might be run by issuing a compound command, beginning with deleting all stopped containers:
 
 ```
 $ sudo docker rm `sudo docker ps -aq` && \
-  sudo PORT=8080 docker run -p${PORT}:${PORT} --name bus transroutownish/bus; echo $?
+  sudo PORT=8080 docker run -dp${PORT}:${PORT} --name bus transroutownish/bus; echo $?
 ...
 ```
 
