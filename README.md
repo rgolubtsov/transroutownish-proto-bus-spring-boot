@@ -78,7 +78,7 @@ $ # Whilst this is not necessary, it's beneficial knowing the exit code.
 **Run** the microservice using its all-in-one JAR file, built previously by the `package` or `jar` targets:
 
 ```
-$ java -jar target/bus-0.10.1.jar; echo $?
+$ java -jar target/bus-0.10.2.jar; echo $?
 $ #                              ^   ^   ^
 $ #                              |   |   |
 $ # -----------------------------+---+---+
@@ -106,11 +106,11 @@ docker: Error response from daemon: Conflict.
 
 ...it's safe to remove that container: `$ sudo docker rm bus`, and run the image once again.
 
-But even better, a Docker image might be run by issuing a compound command, beginning with deleting all stopped containers:
+Yet even better, a Docker image might be run by issuing a compound command, beginning with deleting all stopped containers:
 
 ```
 $ sudo docker rm `sudo docker ps -aq` && \
-  sudo PORT=8080 docker run -p${PORT}:${PORT} --name bus transroutownish/bus; echo $?
+  sudo PORT=8080 docker run -dp${PORT}:${PORT} --name bus transroutownish/bus; echo $?
 ...
 ```
 
