@@ -2,7 +2,7 @@
  * src/test/java/com/transroutownish/proto/bus/
  * UrbanBusRoutingApplicationTests.java
  * ============================================================================
- * Urban bus routing microservice prototype. Version 0.10.0
+ * Urban bus routing microservice prototype. Version 0.10.1
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing a simple urban bus routing prototype.
@@ -27,7 +27,7 @@ import static com.transroutownish.proto.bus.UrbanBusRoutingControllerHelper.*;
 /**
  * The test class for the microservice.
  *
- * @version 0.10.0
+ * @version 0.10.1
  * @since   0.0.1
  */
 @SpringBootTest
