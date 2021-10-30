@@ -39,7 +39,7 @@ public class UrbanBusRoutingControllerHelper {
     public static final String V_BAR        =  "|";
 
     // Extra helper constants.
-    public static final String YES = "yes";
+    private static final String YES = "yes";
 
     // Common error messages.
     public static final String ERR_DEBUG_LOG_UNABLE_TO_ACTIVATE
@@ -113,7 +113,7 @@ public class UrbanBusRoutingControllerHelper {
     }
 
     // Helper method. Used to get the application properties object.
-    public static Properties _get_props(final String error_msg) {
+    private static final Properties _get_props(final String error_msg) {
         Properties props = new Properties();
 
         ClassLoader loader
