@@ -1,6 +1,5 @@
 /*
- * src/test/java/com/transroutownish/proto/bus/
- * UrbanBusRoutingApplicationTests.java
+ * src/test/java/com/transroutownish/proto/bus/UrbanBusRoutingAppTests.java
  * ============================================================================
  * Urban bus routing microservice prototype. Version 0.11.0
  * ============================================================================
@@ -31,7 +30,7 @@ import static com.transroutownish.proto.bus.UrbanBusRoutingControllerHelper.*;
  * @since   0.0.1
  */
 @SpringBootTest
-class UrbanBusRoutingApplicationTests {
+class UrbanBusRoutingAppTests {
     /** The SLF4J logger. */
     private static final Logger l = LoggerFactory.getLogger(
         MethodHandles.lookup().lookupClass()

@@ -1,5 +1,5 @@
 /*
- * src/main/java/com/transroutownish/proto/bus/UrbanBusRoutingApplication.java
+ * src/main/java/com/transroutownish/proto/bus/UrbanBusRoutingApp.java
  * ============================================================================
  * Urban bus routing microservice prototype. Version 0.11.0
  * ============================================================================
@@ -36,7 +36,7 @@ import static com.transroutownish.proto.bus.UrbanBusRoutingControllerHelper.*;
  * @since   0.0.1
  */
 @SpringBootApplication
-public class UrbanBusRoutingApplication {
+public class UrbanBusRoutingApp {
     /** The path and filename of the sample routes data store. */
     private static final String SAMPLE_ROUTES = "./data/routes.txt";
 
@@ -93,7 +93,7 @@ public class UrbanBusRoutingApplication {
         debug_log_enabled = is_debug_log_enabled();
 
         // Starting up the app.
-        SpringApplication.run(UrbanBusRoutingApplication.class, args);
+        SpringApplication.run(UrbanBusRoutingApp.class, args);
     }
 }
 

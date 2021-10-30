@@ -91,7 +91,7 @@ public class UrbanBusRoutingController {
         int _from = 0;
         int _to   = 0;
 
-        if (UrbanBusRoutingApplication.debug_log_enabled) {
+        if (UrbanBusRoutingApp.debug_log_enabled) {
             l.debug(FROM + EQUALS + BRACES + SPACE + V_BAR + SPACE
                   + TO   + EQUALS + BRACES,
                     from,
@@ -154,12 +154,12 @@ public class UrbanBusRoutingController {
 
         String route = EMPTY_STRING, route_from = EMPTY_STRING;
 
-        int routes_count = UrbanBusRoutingApplication.routes_list.size();
+        int routes_count = UrbanBusRoutingApp.routes_list.size();
 
         for (int i = 0; i < routes_count; i++) {
-            route = UrbanBusRoutingApplication.routes_list.get(i);
+            route = UrbanBusRoutingApp.routes_list.get(i);
 
-            if (UrbanBusRoutingApplication.debug_log_enabled) {
+            if (UrbanBusRoutingApp.debug_log_enabled) {
                 l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES, route);
             }
 
@@ -169,7 +169,7 @@ public class UrbanBusRoutingController {
                 // on the current route, beginning at the pinned point.
                 route_from = route.substring(route.indexOf(from));
 
-                if (UrbanBusRoutingApplication.debug_log_enabled) {
+                if (UrbanBusRoutingApp.debug_log_enabled) {
                     l.debug(BRACES + SPACE + V_BAR + SPACE + BRACES,
                             from, route_from);
                 }
