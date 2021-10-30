@@ -119,32 +119,48 @@ $ sudo docker rm `sudo docker ps -aq` && \
 The following is not necessary but might be considered interesting &mdash; to look up into the running container, and check out that the microservice's JAR, log, and routes data store are at their expected places and in effect:
 
 ```
-$ sudo docker ps
-CONTAINER ID   IMAGE                 COMMAND               CREATED             STATUS             PORTS                                       NAMES
-<container_id> transroutownish/bus   "java -jar bus.jar"   About an hour ago   Up About an hour   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   bus
+$ sudo docker ps -a
+CONTAINER ID   IMAGE                 COMMAND                    CREATED             STATUS             PORTS                                       NAMES
+<container_id> transroutownish/bus   "java org.springfram..."   About an hour ago   Up About an hour   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   bus
 $
 $ sudo docker exec -ti bus sh; echo $?
 /var/tmp #
-/var/tmp # ls -al
-total 17544
-drwxrwxrwt    1 root     root          4096 Oct 25 00:00 .
-drwxr-xr-x    1 root     root          4096 Aug 27 00:00 ..
--rw-rw-r--    1 root     root      17941043 Oct 25 00:00 bus.jar
-drwxr-xr-x    2 root     root          4096 Oct 25 00:00 data
-drwxr-xr-x    2 root     root          4096 Oct 25 00:00 log
+/var/tmp # java --version
+openjdk 11.0.13 2021-10-19 LTS
+OpenJDK Runtime Environment Zulu11.52+13-CA (build 11.0.13+8-LTS)
+OpenJDK 64-Bit Server VM Zulu11.52+13-CA (build 11.0.13+8-LTS, mixed mode)
 /var/tmp #
-/var/tmp # ls -al data/ log/
+/var/tmp # ls -al
+total 32
+drwxrwxrwt    1 root     root          4096 Oct 30 00:00 .
+drwxr-xr-x    1 root     root          4096 Aug 27 00:00 ..
+drwxr-xr-x    1 root     root          4096 Oct 30 00:00 BOOT-INF
+drwxr-xr-x    3 root     root          4096 Oct 30 00:00 META-INF
+drwxr-xr-x    2 root     root          4096 Oct 30 00:00 data
+drwxr-xr-x    2 root     root          4096 Oct 30 00:00 log
+drwxr-xr-x    3 root     root          4096 Oct 30 00:00 org
+/var/tmp #
+/var/tmp # ls -al BOOT-INF/ data/ log/
+BOOT-INF/:
+total 24
+drwxr-xr-x    1 root     root          4096 Oct 30 00:00 .
+drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
+drwxr-xr-x    3 root     root          4096 Oct 30 00:00 classes
+-rw-r--r--    1 root     root          1674 Oct 30 00:00 classpath.idx
+-rw-r--r--    1 root     root           212 Oct 30 00:00 layers.idx
+drwxr-xr-x    2 root     root          4096 Oct 30 00:00 lib
+
 data/:
 total 56
-drwxr-xr-x    2 root     root          4096 Oct 25 00:00 .
-drwxrwxrwt    1 root     root          4096 Oct 25 00:00 ..
--rw-rw-r--    1 root     root         46218 Oct 25 00:00 routes.txt
+drwxr-xr-x    2 root     root          4096 Oct 30 00:00 .
+drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
+-rw-rw-r--    1 root     root         46218 Oct 30 00:00 routes.txt
 
 log/:
 total 12
-drwxr-xr-x    2 root     root          4096 Oct 25 00:00 .
-drwxrwxrwt    1 root     root          4096 Oct 25 00:00 ..
--rw-r--r--    1 root     root           447 Oct 25 00:00 bus.log
+drwxr-xr-x    2 root     root          4096 Oct 30 00:00 .
+drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
+-rw-r--r--    1 root     root           418 Oct 30 00:00 bus.log
 /var/tmp #
 /var/tmp # exit # Or simply <Ctrl-D>.
 0
