@@ -55,6 +55,9 @@ public class UrbanBusRoutingApplication {
     /** The list, containing all available routes. */
     public static List<String> routes_list;
 
+    /** The debug logging enabler. */
+    public static boolean debug_log_enabled;
+
     /**
      * The microservice entry point.
      *
@@ -85,6 +88,9 @@ public class UrbanBusRoutingApplication {
         }
 
         routes.close();
+
+        // Identifying whether debug logging is enabled.
+        debug_log_enabled = is_debug_log_enabled();
 
         // Starting up the app.
         SpringApplication.run(UrbanBusRoutingApplication.class, args);
