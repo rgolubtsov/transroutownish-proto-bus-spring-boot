@@ -1,7 +1,7 @@
 /*
  * src/main/java/com/transroutownish/proto/bus/UrbanBusRoutingController.java
  * ============================================================================
- * Urban bus routing microservice prototype. Version 0.10.2
+ * Urban bus routing microservice prototype. Version 0.11.2
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing a simple urban bus routing prototype.
@@ -30,7 +30,7 @@ import static com.transroutownish.proto.bus.UrbanBusRoutingControllerHelper.*;
 /**
  * The controller class of the microservice.
  *
- * @version 0.10.2
+ * @version 0.11.2
  * @since   0.0.1
  */
 @RestController
@@ -91,10 +91,12 @@ public class UrbanBusRoutingController {
         int _from = 0;
         int _to   = 0;
 
-//      l.debug(FROM + EQUALS + BRACES + SPACE + V_BAR + SPACE
-//            + TO   + EQUALS + BRACES,
-//              from,
-//              to);
+        if (UrbanBusRoutingApp.debug_log_enabled) {
+            l.debug(FROM + EQUALS + BRACES + SPACE + V_BAR + SPACE
+                  + TO   + EQUALS + BRACES,
+                    from,
+                    to);
+        }
 
         // --------------------------------------------------------------------
         // --- Parsing and validating request params - Begin ------------------
@@ -152,12 +154,14 @@ public class UrbanBusRoutingController {
 
         String route = EMPTY_STRING, route_from = EMPTY_STRING;
 
-        int routes_count = UrbanBusRoutingApplication.routes_list.size();
+        int routes_count = UrbanBusRoutingApp.routes_list.size();
 
         for (int i = 0; i < routes_count; i++) {
-            route = UrbanBusRoutingApplication.routes_list.get(i);
+            route = UrbanBusRoutingApp.routes_list.get(i);
 
-//          l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES, route);
+            if (UrbanBusRoutingApp.debug_log_enabled) {
+                l.debug((i + 1) + SPACE + EQUALS + SPACE + BRACES, route);
+            }
 
             if (route.matches(SEQ1_REGEX + from + SEQ2_REGEX)) {
                 // Pinning in the starting bus stop point, if it's found.
@@ -165,8 +169,10 @@ public class UrbanBusRoutingController {
                 // on the current route, beginning at the pinned point.
                 route_from = route.substring(route.indexOf(from));
 
-//              l.debug(BRACES + SPACE + V_BAR + SPACE + BRACES,
-//                      from, route_from);
+                if (UrbanBusRoutingApp.debug_log_enabled) {
+                    l.debug(BRACES + SPACE + V_BAR + SPACE + BRACES,
+                            from, route_from);
+                }
 
                 if (route_from.matches(SEQ1_REGEX + to + SEQ2_REGEX)) {
                     direct = true; break;

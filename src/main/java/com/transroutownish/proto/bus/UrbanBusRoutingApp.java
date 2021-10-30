@@ -1,7 +1,7 @@
 /*
- * src/main/java/com/transroutownish/proto/bus/UrbanBusRoutingApplication.java
+ * src/main/java/com/transroutownish/proto/bus/UrbanBusRoutingApp.java
  * ============================================================================
- * Urban bus routing microservice prototype. Version 0.10.2
+ * Urban bus routing microservice prototype. Version 0.11.2
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing a simple urban bus routing prototype.
@@ -32,11 +32,11 @@ import static com.transroutownish.proto.bus.UrbanBusRoutingControllerHelper.*;
 /**
  * The startup class of the microservice.
  *
- * @version 0.10.2
+ * @version 0.11.2
  * @since   0.0.1
  */
 @SpringBootApplication
-public class UrbanBusRoutingApplication {
+public class UrbanBusRoutingApp {
     /** The path and filename of the sample routes data store. */
     private static final String SAMPLE_ROUTES = "./data/routes.txt";
 
@@ -54,6 +54,9 @@ public class UrbanBusRoutingApplication {
 
     /** The list, containing all available routes. */
     public static List<String> routes_list;
+
+    /** The debug logging enabler. */
+    public static boolean debug_log_enabled;
 
     /**
      * The microservice entry point.
@@ -86,8 +89,11 @@ public class UrbanBusRoutingApplication {
 
         routes.close();
 
+        // Identifying whether debug logging is enabled.
+        debug_log_enabled = is_debug_log_enabled();
+
         // Starting up the app.
-        SpringApplication.run(UrbanBusRoutingApplication.class, args);
+        SpringApplication.run(UrbanBusRoutingApp.class, args);
     }
 }
 
