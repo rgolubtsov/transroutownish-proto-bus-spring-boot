@@ -116,7 +116,7 @@ $ sudo docker rm `sudo docker ps -aq` && \
 
 ### Exploring a Docker image payload
 
-The following is not necessary but might be considered interesting &mdash; to look up into the running container, and check out that the microservice's JAR, log, and routes data store are at their expected places and in effect:
+The following is not necessary but might be considered interesting &mdash; to look up into the running container, and check out that the microservice's JAR layers, log, and routes data store are at their expected places and in effect:
 
 ```
 $ sudo docker ps -a
