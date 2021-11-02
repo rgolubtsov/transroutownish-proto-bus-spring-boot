@@ -6,7 +6,7 @@
 # A Spring Boot-based application, designed and intended to be run
 # as a microservice, implementing a simple urban bus routing prototype.
 # =============================================================================
-# Written by Radislav (Radicchio) Golubtsov, 2021
+# Copyright (C) 2021 Radislav (Radicchio) Golubtsov
 #
 # (See the LICENSE file at the top of the source tree.)
 #
