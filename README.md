@@ -17,6 +17,15 @@ A **module** that is developing here, is dedicated to find out quickly, whether 
 
 `<starting_bus_stop_point>` and `<ending_bus_stop_point>` above are bus stop IDs: unique positive integers, taken right from inputs.
 
+A bus routes list is a plain text file where each route has its own unique ID (positive integer) and a sequence of its bus stop IDs. Each route occupies only one line in this file, so that they are all representing something similar to a list &mdash; the list of routes. The first number in a route is always its own ID. Other consequent numbers after it are simply IDs of bus stops in this route, up to the end of line. All IDs in each route are separated by whitespace, usually by single spaces or tabs, but not newline.
+
+There are some constraints:
+1. Routes are considered not to be a round trip journey, that is they are operated in the forward direction only.
+2. All IDs (of routes and bus stops) must be represented by positive integer values, in the range `1 .. 2,147,483,647`.
+3. Any bus stop ID may occure in the current route only once, but it might be presented in any other route too.
+
+**TODO:** Provide a brief definition of this **module** as a microservice.
+
 ---
 
 ## Table of Contents
