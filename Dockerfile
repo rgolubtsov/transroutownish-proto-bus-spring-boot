@@ -1,7 +1,7 @@
 #
 # Dockerfile
 # =============================================================================
-# Urban bus routing microservice prototype. Version 0.11.4
+# Urban bus routing microservice prototype. Version 0.12.0
 # =============================================================================
 # A Spring Boot-based application, designed and intended to be run
 # as a microservice, implementing a simple urban bus routing prototype.
@@ -13,12 +13,14 @@
 
 # === Stage 1: Extract JAR layers =============================================
 FROM       azul/zulu-openjdk-alpine:11-jre-headless AS layers
+USER       nobody
 WORKDIR    var/tmp
 COPY       target/*.jar bus.jar
 RUN        ["java", "-Djarmode=layertools", "-jar", "bus.jar", "extract", "--destination", "layers"]
 
 # === Stage 2: Run the microservice ===========================================
 FROM       azul/zulu-openjdk-alpine:11-jre-headless
+USER       daemon
 WORKDIR    var/tmp
 ARG        LAYERS=var/tmp/layers
 COPY       --from=layers ${LAYERS}/dependencies          ./

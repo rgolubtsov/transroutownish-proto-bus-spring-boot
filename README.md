@@ -101,7 +101,7 @@ $ # Whilst this is not necessary, it's beneficial knowing the exit code.
 **Run** the microservice using its all-in-one JAR file, built previously by the `package` or `jar` targets:
 
 ```
-$ java -jar target/bus-0.11.4.jar; echo $?
+$ java -jar target/bus-0.12.0.jar; echo $?
 $ #                              ^   ^   ^
 $ #                              |   |   |
 $ # -----------------------------+---+---+
@@ -147,31 +147,31 @@ CONTAINER ID   IMAGE                 COMMAND                    CREATED         
 <container_id> transroutownish/bus   "java org.springfram..."   About an hour ago   Up About an hour   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   bus
 $
 $ sudo docker exec -ti bus sh; echo $?
-/var/tmp #
-/var/tmp # java --version
+/var/tmp $
+/var/tmp $ java --version
 openjdk 11.0.13 2021-10-19 LTS
 OpenJDK Runtime Environment Zulu11.52+13-CA (build 11.0.13+8-LTS)
 OpenJDK 64-Bit Server VM Zulu11.52+13-CA (build 11.0.13+8-LTS, mixed mode)
-/var/tmp #
-/var/tmp # ls -al
+/var/tmp $
+/var/tmp $ ls -al
 total 32
 drwxrwxrwt    1 root     root          4096 Oct 30 00:00 .
 drwxr-xr-x    1 root     root          4096 Aug 27 00:00 ..
-drwxr-xr-x    1 root     root          4096 Oct 30 00:00 BOOT-INF
-drwxr-xr-x    3 root     root          4096 Oct 30 00:00 META-INF
+drwxr-xr-x    1 nobody   nobody        4096 Oct 30 00:00 BOOT-INF
+drwxr-xr-x    3 nobody   nobody        4096 Oct 30 00:00 META-INF
 drwxr-xr-x    2 root     root          4096 Oct 30 00:00 data
-drwxr-xr-x    2 root     root          4096 Oct 30 00:00 log
-drwxr-xr-x    3 root     root          4096 Oct 30 00:00 org
-/var/tmp #
-/var/tmp # ls -al BOOT-INF/ data/ log/
+drwxr-xr-x    2 daemon   daemon        4096 Oct 30 00:00 log
+drwxr-xr-x    3 nobody   nobody        4096 Oct 30 00:00 org
+/var/tmp $
+/var/tmp $ ls -al BOOT-INF/ data/ log/
 BOOT-INF/:
 total 24
-drwxr-xr-x    1 root     root          4096 Oct 30 00:00 .
+drwxr-xr-x    1 nobody   nobody        4096 Oct 30 00:00 .
 drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
-drwxr-xr-x    3 root     root          4096 Oct 30 00:00 classes
--rw-r--r--    1 root     root          1674 Oct 30 00:00 classpath.idx
--rw-r--r--    1 root     root           212 Oct 30 00:00 layers.idx
-drwxr-xr-x    2 root     root          4096 Oct 30 00:00 lib
+drwxr-xr-x    3 nobody   nobody        4096 Oct 30 00:00 classes
+-rw-r--r--    1 nobody   nobody        1674 Oct 30 00:00 classpath.idx
+-rw-r--r--    1 nobody   nobody         212 Oct 30 00:00 layers.idx
+drwxr-xr-x    2 nobody   nobody        4096 Oct 30 00:00 lib
 
 data/:
 total 56
@@ -181,11 +181,11 @@ drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
 
 log/:
 total 12
-drwxr-xr-x    2 root     root          4096 Oct 30 00:00 .
+drwxr-xr-x    2 daemon   daemon        4096 Oct 30 00:00 .
 drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
--rw-r--r--    1 root     root           418 Oct 30 00:00 bus.log
-/var/tmp #
-/var/tmp # exit # Or simply <Ctrl-D>.
+-rw-r--r--    1 daemon   daemon         420 Oct 30 00:00 bus.log
+/var/tmp $
+/var/tmp $ exit # Or simply <Ctrl-D>.
 0
 ```
 
