@@ -70,11 +70,9 @@ $ make test
 ...
 $ make jar
 ...
-$ make all  # <== Or make all the targets at one pass: compile,.. jar.
+$ make all  # <== Or make all the targets at one pass: compile, jar (except test).
 ...
 ```
-
-(**Note:** the `jar` target above includes `test`.)
 
 ### Creating a Docker image
 

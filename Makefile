@@ -16,8 +16,9 @@ TEST = test
 JAR  = jar
 
 # Specify flags and other vars here.
-MAVEN_W = ./mvnw
-ECHO    = @echo
+MAVEN_W    = ./mvnw
+ECHO       = @echo
+SKIP_TESTS = -DskipTests
 
 # Making the first target (the microservice itself).
 $(SERV):
@@ -30,7 +31,7 @@ $(TEST):
 
 # Making the third target (runnable JAR file).
 $(JAR):
-	$(MAVEN_W) package
+	$(MAVEN_W) package $(SKIP_TESTS)
 	$(ECHO)
 
 .PHONY: all clean
