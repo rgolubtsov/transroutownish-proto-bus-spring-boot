@@ -114,7 +114,7 @@ $ # Whilst this is not necessary, it's beneficial knowing the exit code.
 **Run** a Docker image of the microservice:
 
 ```
-$ sudo PORT=8080 docker run -p${PORT}:${PORT} --name bus transroutownish/bus; echo $?
+$ export PORT=8765 && sudo docker run -p${PORT}:${PORT} --name bus transroutownish/bus; echo $?
 ...
 ```
 
@@ -133,7 +133,7 @@ Yet even better, a Docker image might be run by issuing a compound command, begi
 
 ```
 $ sudo docker rm `sudo docker ps -aq` && \
-  sudo PORT=8080 docker run -dp${PORT}:${PORT} --name bus transroutownish/bus; echo $?
+  export PORT=8765 && sudo docker run -dp${PORT}:${PORT} --name bus transroutownish/bus; echo $?
 ...
 ```
 
@@ -144,7 +144,7 @@ The following is not necessary but might be considered interesting &mdash; to lo
 ```
 $ sudo docker ps -a
 CONTAINER ID   IMAGE                 COMMAND                    CREATED             STATUS             PORTS                                       NAMES
-<container_id> transroutownish/bus   "java org.springfram..."   About an hour ago   Up About an hour   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   bus
+<container_id> transroutownish/bus   "java org.springfram..."   About an hour ago   Up About an hour   0.0.0.0:8765->8765/tcp, :::8765->8765/tcp   bus
 $
 $ sudo docker exec -ti bus sh; echo $?
 /var/tmp $
@@ -185,6 +185,11 @@ drwxr-xr-x    2 daemon   daemon        4096 Oct 30 00:00 .
 drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
 -rw-r--r--    1 daemon   daemon         420 Oct 30 00:00 bus.log
 /var/tmp $
+/var/tmp $ netstat -plunt
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:8765            0.0.0.0:*               LISTEN      1/java
+/var/tmp $
 /var/tmp $ exit # Or simply <Ctrl-D>.
 0
 ```
@@ -203,14 +208,14 @@ HTTP request param | Sample value | Another sample value | Yet another sample va
 The direct route is found:
 
 ```
-$ curl 'http://localhost:8080/api/direct?from=4838&to=524987'
+$ curl 'http://localhost:8765/api/direct?from=4838&to=524987'
 {"from":4838,"to":524987,"direct":true}
 ```
 
 The direct route is not found:
 
 ```
-$ curl 'http://localhost:8080/api/direct?from=82&to=35390'
+$ curl 'http://localhost:8765/api/direct?from=82&to=35390'
 {"from":82,"to":35390,"direct":false}
 ```
 
@@ -219,13 +224,13 @@ $ curl 'http://localhost:8080/api/direct?from=82&to=35390'
 When the query string passed in a request, contains inappropriate input, or the URI endpoint doesn't contain anything else at all after its path, the microservice will respond with the **HTTP 400 Bad Request** status code, including a specific response body in JSON representation, like the following:
 
 ```
-$ curl 'http://localhost:8080/api/direct?from=qwerty4838&to=-i-.;--089asdf../nj524987'
+$ curl 'http://localhost:8765/api/direct?from=qwerty4838&to=-i-.;--089asdf../nj524987'
 {"error":"Request parameters must take positive integer values, in the range 1 .. 2,147,483,647. Please check your inputs."}
 ```
 
 Or even simpler:
 
 ```
-$ curl http://localhost:8080/api/direct
+$ curl http://localhost:8765/api/direct
 {"error":"Request parameters must take positive integer values, in the range 1 .. 2,147,483,647. Please check your inputs."}
 ```
