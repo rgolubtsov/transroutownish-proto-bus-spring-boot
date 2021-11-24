@@ -3,7 +3,7 @@
 **A Spring Boot-based application, designed and intended to be run as a microservice,
 <br />implementing a simple urban bus routing prototype**
 
-Consider an IoT system that aimed at planning and forming a specific bus route for a hypothetical passenger. One crucial part of such system is a **module**, that is responsible for filtering bus routes between two arbitrary bus stops where a direct route is actually present and it can be easily found. Imagine there is a fictional urban public transportation agency that provides a wide series of bus routes which are covering large city areas, such that they are consisting of many bus stop points in each route. Let's name this agency **Trans-RoutE-Townish Co., Ltd.** or in the Net representation &mdash; **transroutownish.com**.
+Consider an IoT system that aimed at planning and forming a specific bus route for a hypothetical passenger. One crucial part of such system is a **module**, that is responsible for filtering bus routes between two arbitrary bus stops where a direct route is actually present and it can be easily found. Imagine there is a fictional urban public transportation agency that provides a wide series of bus routes which are covering large city areas, such that they are consisting of many bus stop points in each route. Let's name this agency **Trans-RoutE-Townish Co., Ltd.** or in the Net representation &mdash; **transroutownish.com**, hence the name of the project.
 
 A **module** that is developing here, is dedicated to find out quickly, whether there is a direct route in a list of given bus routes between two specified bus stops. It should immediately report back to the IoT system with the result `true` if such a route is found, i.e. it exists in the bus routes list, or `false` otherwise, by outputting a simple JSON structure using the following format:
 
@@ -33,7 +33,10 @@ This microservice is intended to be built locally and to be run like a conventio
 ## Table of Contents
 
 * **[Building](#building)**
+  * **[Creating a Docker image](#creating-a-docker-image)**
 * **[Running](#running)**
+  * **[Running a Docker image](#running-a-docker-image)**
+  * **[Exploring a Docker image payload](#exploring-a-docker-image-payload)**
 * **[Operating](#operating)**
   * **[Error handling](#error-handling)**
 
