@@ -153,7 +153,7 @@ $ sudo docker ps -a
 CONTAINER ID   IMAGE                 COMMAND                    CREATED             STATUS             PORTS                                       NAMES
 <container_id> transroutownish/bus   "java org.springfram..."   About an hour ago   Up About an hour   0.0.0.0:8765->8765/tcp, :::8765->8765/tcp   bus
 $
-$ sudo docker exec -ti bus sh; echo $?
+$ sudo docker exec -it bus sh; echo $?
 /var/tmp $
 /var/tmp $ java --version
 openjdk 11.0.13 2021-10-19 LTS
