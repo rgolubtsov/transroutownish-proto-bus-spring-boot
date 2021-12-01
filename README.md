@@ -121,7 +121,7 @@ $ # Whilst this is not necessary, it's beneficial knowing the exit code.
 **Run** a Docker image of the microservice:
 
 ```
-$ export PORT=8765 && sudo docker run -p${PORT}:${PORT} --name bus transroutownish/bus; echo $?
+$ export PORT=8765 && sudo docker run -dp${PORT}:${PORT} --name bus transroutownish/bus; echo $?
 ...
 ```
 
