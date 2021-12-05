@@ -109,10 +109,6 @@ $ # Whilst this is not necessary, it's beneficial knowing the exit code.
 
 ```
 $ java -jar target/bus-0.12.5.jar; echo $?
-$ #                              ^   ^   ^
-$ #                              |   |   |
-$ # -----------------------------+---+---+
-$ # Whilst this is not necessary, it's beneficial knowing the exit code.
 ...
 ```
 
