@@ -23,6 +23,7 @@ import org.springframework.boot.SpringApplication;
 
 import java.io.File;
 
+import java.util.Properties;
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -52,6 +53,9 @@ public class UrbanBusRoutingApp {
         MethodHandles.lookup().lookupClass()
     );
 
+    /** The application properties object. */
+    public static Properties props;
+
     /** The list, containing all available routes. */
     public static List<String> routes_list;
 
@@ -65,6 +69,9 @@ public class UrbanBusRoutingApp {
      */
     public static void main(final String[] args) {
         Scanner routes = null;
+
+        // Getting the application properties object.
+        props = _get_props();
 
         // Getting the path and filename of the routes data store
         // from application properties.
