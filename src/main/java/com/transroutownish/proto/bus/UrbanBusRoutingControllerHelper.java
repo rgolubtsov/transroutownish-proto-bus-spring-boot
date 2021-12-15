@@ -42,11 +42,8 @@ public class UrbanBusRoutingControllerHelper {
     private static final String YES = "yes";
 
     // Common error messages.
-    public static final String ERR_DEBUG_LOG_UNABLE_TO_ACTIVATE
-        = "Unable to activate debug log.";
-    public static final String ERR_DATASTORE_NOT_LOADED_USE_DEFAULT
-        = "Data store specified could not be loaded. "
-        + "Using default data store.";
+    public static final String ERR_APP_PROPS_UNABLE_TO_GET
+        = "Unable to get application properties.";
     public static final String ERR_DATASTORE_NOT_FOUND
         = "FATAL: Data store file not found. Quitting...";
     public static final String ERR_REQ_PARAMS_MUST_BE_POSITIVE_INTS
@@ -79,11 +76,9 @@ public class UrbanBusRoutingControllerHelper {
     public static String get_routes_datastore() {
         String datastore = EMPTY_STRING;
 
-        Properties props = _get_props(ERR_DATASTORE_NOT_LOADED_USE_DEFAULT);
-
-        String path_prefix = props.getProperty(PATH_PREFIX);
-        String path_dir    = props.getProperty(PATH_DIR   );
-        String filename    = props.getProperty(FILENAME   );
+        String path_prefix = UrbanBusRoutingApp.props.getProperty(PATH_PREFIX);
+        String path_dir    = UrbanBusRoutingApp.props.getProperty(PATH_DIR   );
+        String filename    = UrbanBusRoutingApp.props.getProperty(FILENAME   );
 
         if (path_prefix != null) { datastore += path_prefix; }
         if (path_dir    != null) { datastore += path_dir;    }
@@ -102,9 +97,8 @@ public class UrbanBusRoutingControllerHelper {
      *         <code>false</code> otherwise.
      */
     public static boolean is_debug_log_enabled() {
-        Properties props = _get_props(ERR_DEBUG_LOG_UNABLE_TO_ACTIVATE);
-
-        String debug_log_enabled = props.getProperty(DEBUG_LOG_ENABLED);
+        String debug_log_enabled
+            = UrbanBusRoutingApp.props.getProperty(DEBUG_LOG_ENABLED);
 
         if ((debug_log_enabled != null)
             && (debug_log_enabled.compareTo(YES) == 0)) { return true; }
@@ -113,7 +107,7 @@ public class UrbanBusRoutingControllerHelper {
     }
 
     // Helper method. Used to get the application properties object.
-    private static final Properties _get_props(final String error_msg) {
+    public static final Properties _get_props() {
         Properties props = new Properties();
 
         ClassLoader loader
@@ -125,7 +119,7 @@ public class UrbanBusRoutingControllerHelper {
             props.load(data);
             data.close();
         } catch (java.io.IOException e) {
-            l.error(error_msg);
+            l.error(ERR_APP_PROPS_UNABLE_TO_GET);
         }
 
         return props;
