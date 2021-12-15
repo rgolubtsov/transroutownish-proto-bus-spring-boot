@@ -2,7 +2,7 @@
  * src/main/java/com/transroutownish/proto/bus/
  * UrbanBusRoutingControllerHelper.java
  * ============================================================================
- * Urban bus routing microservice prototype. Version 0.12.5
+ * Urban bus routing microservice prototype. Version 0.13.0
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing a simple urban bus routing prototype.
@@ -26,7 +26,7 @@ import java.util.Properties;
 /**
  * The helper class for the controller and the related ones.
  *
- * @version 0.12.5
+ * @version 0.13.0
  * @since   0.0.1
  */
 public class UrbanBusRoutingControllerHelper {
