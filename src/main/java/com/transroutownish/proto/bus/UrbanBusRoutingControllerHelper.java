@@ -56,10 +56,10 @@ public class UrbanBusRoutingControllerHelper {
     /** The application properties filename. */
     private static final String APP_PROPS = "application.properties";
 
-    // Application properties keys of the logger.
+    // Application properties keys for the logger.
     private static final String DEBUG_LOG_ENABLED = "logger.debug.enabled";
 
-    // Application properties keys of the routes data store.
+    // Application properties keys for the routes data store.
     private static final String PATH_PREFIX = "routes.datastore.path.prefix";
     private static final String PATH_DIR    = "routes.datastore.path.dir";
     private static final String FILENAME    = "routes.datastore.filename";
