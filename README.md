@@ -211,14 +211,14 @@ HTTP request param | Sample value | Another sample value | Yet another sample va
 The direct route is found:
 
 ```
-$ curl 'http://localhost:8765/api/direct?from=4838&to=524987'
+$ curl 'http://localhost:8765/route/direct?from=4838&to=524987'
 {"from":4838,"to":524987,"direct":true}
 ```
 
 The direct route is not found:
 
 ```
-$ curl 'http://localhost:8765/api/direct?from=82&to=35390'
+$ curl 'http://localhost:8765/route/direct?from=82&to=35390'
 {"from":82,"to":35390,"direct":false}
 ```
 
@@ -227,13 +227,13 @@ $ curl 'http://localhost:8765/api/direct?from=82&to=35390'
 When the query string passed in a request, contains inappropriate input, or the URI endpoint doesn't contain anything else at all after its path, the microservice will respond with the **HTTP 400 Bad Request** status code, including a specific response body in JSON representation, like the following:
 
 ```
-$ curl 'http://localhost:8765/api/direct?from=qwerty4838&to=-i-.;--089asdf../nj524987'
+$ curl 'http://localhost:8765/route/direct?from=qwerty4838&to=-i-.;--089asdf../nj524987'
 {"error":"Request parameters must take positive integer values, in the range 1 .. 2,147,483,647. Please check your inputs."}
 ```
 
 Or even simpler:
 
 ```
-$ curl http://localhost:8765/api/direct
+$ curl http://localhost:8765/route/direct
 {"error":"Request parameters must take positive integer values, in the range 1 .. 2,147,483,647. Please check your inputs."}
 ```

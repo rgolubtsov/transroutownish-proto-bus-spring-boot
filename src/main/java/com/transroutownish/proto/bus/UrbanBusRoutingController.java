@@ -37,7 +37,7 @@ import static com.transroutownish.proto.bus.UrbanBusRoutingControllerHelper.*;
 @SuppressWarnings("unchecked")
 public class UrbanBusRoutingController {
     // Helper constants.
-    private static final String REST_PREFIX = "api";
+    private static final String REST_PREFIX = "route";
     private static final String REST_DIRECT = "direct";
 
     private static final String FROM = "from";
@@ -64,7 +64,7 @@ public class UrbanBusRoutingController {
     );
 
     /**
-     * The &quot;<code>/api/direct</code>&quot; <b>GET</b> endpoint.
+     * The &quot;<code>/route/direct</code>&quot; <b>GET</b> endpoint.
      * <br />
      * <br />Returns the response object in the JSON representation,
      * containing the following properties:
