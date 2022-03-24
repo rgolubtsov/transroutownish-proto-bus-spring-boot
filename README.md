@@ -41,7 +41,7 @@ One may consider this project has to be suitable for a wide variety of applied a
 * **[Running](#running)**
   * **[Running a Docker image](#running-a-docker-image)**
   * **[Exploring a Docker image payload](#exploring-a-docker-image-payload)**
-* **[Operating](#operating)**
+* **[Consuming](#consuming)**
   * **[Error handling](#error-handling)**
 
 ## Building
@@ -197,7 +197,7 @@ tcp        0      0 0.0.0.0:8765            0.0.0.0:*               LISTEN      
 0
 ```
 
-## Operating
+## Consuming
 
 All the routes are contained in a so called **routes data store**. It is located in the `data/` directory. The default filename for it is `routes.txt`, but it can be specified explicitly (if intended to use another one) in the `src/main/resources/application.properties` file.
 
