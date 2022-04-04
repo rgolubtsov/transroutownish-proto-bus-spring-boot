@@ -39,7 +39,8 @@ public class UrbanBusRoutingControllerHelper {
     public static final String V_BAR        =  "|";
 
     // Extra helper constants.
-    private static final String YES = "yes";
+    private static final String YES         = "yes";
+    public  static final String SERVER_PORT = "server.port";
 
     // Common error messages.
     public static final String ERR_APP_PROPS_UNABLE_TO_GET
@@ -49,6 +50,10 @@ public class UrbanBusRoutingControllerHelper {
     public static final String ERR_REQ_PARAMS_MUST_BE_POSITIVE_INTS
         = "Request parameters must take positive integer values, "
         + "in the range 1 .. 2,147,483,647. Please check your inputs.";
+
+    // Common notification messages.
+    public static final String MSG_SERVER_STARTED = "Server started on port ";
+    public static final String MSG_SERVER_STOPPED = "Server stopped";
 
     /** The application properties filename. */
     private static final String APP_PROPS = "application.properties";

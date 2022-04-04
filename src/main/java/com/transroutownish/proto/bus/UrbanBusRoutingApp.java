@@ -16,10 +16,16 @@ package com.transroutownish.proto.bus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.graylog2.syslog4j.impl.unix.UnixSyslog;
+import org.graylog2.syslog4j.impl.unix.UnixSyslogConfig;
+import org.graylog2.syslog4j.SyslogIF;
+
 import java.lang.invoke.MethodHandles;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.File;
 
@@ -37,7 +43,8 @@ import static com.transroutownish.proto.bus.UrbanBusRoutingControllerHelper.*;
  * @since   0.0.1
  */
 @SpringBootApplication
-public class UrbanBusRoutingApp {
+@SuppressWarnings("unchecked")
+public class UrbanBusRoutingApp implements DisposableBean {
     /** The path and filename of the sample routes data store. */
     private static final String SAMPLE_ROUTES = "./data/routes.txt";
 
@@ -52,6 +59,9 @@ public class UrbanBusRoutingApp {
     private static final Logger l = LoggerFactory.getLogger(
         MethodHandles.lookup().lookupClass()
     );
+
+    /** The Unix system logger. */
+    public static UnixSyslog s;
 
     /** The application properties object. */
     public static Properties props;
@@ -99,8 +109,30 @@ public class UrbanBusRoutingApp {
         // Identifying whether debug logging is enabled.
         debug_log_enabled = is_debug_log_enabled();
 
+        // Opening the system logger.
+        // Calling <syslog.h> openlog(NULL, LOG_CONS | LOG_PID, LOG_DAEMON);
+        UnixSyslogConfig cfg = new UnixSyslogConfig();
+        cfg.setIdent(null); cfg.setFacility(SyslogIF.FACILITY_DAEMON);
+        s = new UnixSyslog(); s.initialize (SyslogIF.UNIX_SYSLOG,cfg);
+
         // Starting up the app.
-        SpringApplication.run(UrbanBusRoutingApp.class, args);
+        ConfigurableApplicationContext ctx
+            = SpringApplication.run(UrbanBusRoutingApp.class, args);
+
+        String port_number = ctx.getEnvironment().getProperty(SERVER_PORT);
+
+        l.info(MSG_SERVER_STARTED + port_number);
+        s.info(MSG_SERVER_STARTED + port_number);
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        l.info(MSG_SERVER_STOPPED);
+        s.info(MSG_SERVER_STOPPED);
+
+        // Closing the system logger.
+        // Calling <syslog.h> closelog();
+        s.shutdown();
     }
 }
 
