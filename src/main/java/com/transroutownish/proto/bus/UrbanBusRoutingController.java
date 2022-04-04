@@ -96,6 +96,10 @@ public class UrbanBusRoutingController {
                   + TO   + EQUALS + BRACES,
                     from,
                     to);
+
+            UrbanBusRoutingApp.
+            s.debug(FROM + EQUALS + from   + SPACE + V_BAR + SPACE
+                  + TO   + EQUALS + to);
         }
 
         // --------------------------------------------------------------------
