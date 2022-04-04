@@ -42,6 +42,7 @@ One may consider this project has to be suitable for a wide variety of applied a
   * **[Running a Docker image](#running-a-docker-image)**
   * **[Exploring a Docker image payload](#exploring-a-docker-image-payload)**
 * **[Consuming](#consuming)**
+  * **[Logging](#logging)**
   * **[Error handling](#error-handling)**
 
 ## Building
@@ -172,7 +173,7 @@ total 24
 drwxr-xr-x    1 nobody   nobody        4096 Oct 30 00:00 .
 drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
 drwxr-xr-x    3 nobody   nobody        4096 Oct 30 00:00 classes
--rw-r--r--    1 nobody   nobody        1678 Oct 30 00:00 classpath.idx
+-rw-r--r--    1 nobody   nobody        1828 Oct 30 00:00 classpath.idx
 -rw-r--r--    1 nobody   nobody         212 Oct 30 00:00 layers.idx
 drwxr-xr-x    2 nobody   nobody        4096 Oct 30 00:00 lib
 
@@ -186,12 +187,18 @@ log/:
 total 12
 drwxr-xr-x    2 daemon   daemon        4096 Oct 30 00:00 .
 drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
--rw-r--r--    1 daemon   daemon         420 Oct 30 00:00 bus.log
+-rw-r--r--    1 daemon   daemon         481 Oct 30 00:00 bus.log
 /var/tmp $
 /var/tmp $ netstat -plunt
 Active Internet connections (only servers)
 Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
 tcp        0      0 0.0.0.0:8765            0.0.0.0:*               LISTEN      1/java
+/var/tmp $
+/var/tmp $ ps ax
+PID   USER     TIME  COMMAND
+    1 daemon    0:10 java org.springframework.boot.loader.JarLauncher
+   26 daemon    0:00 sh
+   46 daemon    0:00 ps ax
 /var/tmp $
 /var/tmp $ exit # Or simply <Ctrl-D>.
 0
@@ -220,6 +227,55 @@ The direct route is not found:
 ```
 $ curl 'http://localhost:8765/route/direct?from=82&to=35390'
 {"from":82,"to":35390,"direct":false}
+```
+
+### Logging
+
+The microservice has the ability to log messages to a logfile and to the Unix syslog facility. When running directly under Ubuntu Server (not in a Docker container), logs can be seen and analyzed in an ordinary fashion, by `tail`ing the `log/bus.log` logfile:
+
+```
+$ tail -f log/bus.log
+...
+[2022-04-04][20:10:30][INFO ]  Server started on port 8765
+[2022-04-04][20:12:20][DEBUG]  from=4838 | to=524987
+[2022-04-04][20:13:10][DEBUG]  from=82 | to=35390
+[2022-04-04][20:15:00][INFO ]  Server stopped
+...
+```
+
+Messages registered by the Unix system logger can be seen and analyzed using the `journalctl` utility:
+
+```
+$ journalctl -f
+...
+Apr 04 20:10:30 radicv144 java[<pid>]: Server started on port 8765
+Apr 04 20:12:20 radicv144 java[<pid>]: from=4838 | to=524987
+Apr 04 20:13:10 radicv144 java[<pid>]: from=82 | to=35390
+Apr 04 20:15:00 radicv144 java[<pid>]: Server stopped
+...
+```
+
+Inside the running container logs might be queried also by `tail`ing the `log/bus.log` logfile:
+
+```
+/var/tmp $ tail -f log/bus.log
+...
+[2022-04-04][20:20:10][INFO ]  Server started on port 8765
+[2022-04-04][20:20:30][DEBUG]  from=4838 | to=524987
+[2022-04-04][20:20:40][DEBUG]  from=82 | to=35390
+```
+
+And of course Docker itself gives the possibility to read log messages by using the corresponding command for that:
+
+```
+$ sudo docker logs -f bus
+...
+[2022-04-04][20:20:10][INFO ]  Server started on port 8765
+...
+[2022-04-04][20:20:30][DEBUG]  from=4838 | to=524987
+[2022-04-04][20:20:40][DEBUG]  from=82 | to=35390
+...
+[2022-04-04][20:20:50][INFO ]  Server stopped
 ```
 
 ### Error handling
