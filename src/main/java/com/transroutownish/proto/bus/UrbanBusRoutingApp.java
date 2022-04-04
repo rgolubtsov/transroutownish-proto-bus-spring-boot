@@ -61,7 +61,7 @@ public class UrbanBusRoutingApp implements DisposableBean {
     );
 
     /** The Unix system logger. */
-    private static UnixSyslog s;
+    public static UnixSyslog s;
 
     /** The application properties object. */
     public static Properties props;
