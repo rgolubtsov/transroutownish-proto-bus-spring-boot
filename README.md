@@ -187,7 +187,7 @@ log/:
 total 12
 drwxr-xr-x    2 daemon   daemon        4096 Oct 30 00:00 .
 drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
--rw-r--r--    1 daemon   daemon         481 Oct 30 00:00 bus.log
+-rw-r--r--    1 daemon   daemon         480 Oct 30 00:00 bus.log
 /var/tmp $
 /var/tmp $ netstat -plunt
 Active Internet connections (only servers)
