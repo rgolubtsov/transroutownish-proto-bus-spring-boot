@@ -173,7 +173,7 @@ total 24
 drwxr-xr-x    1 nobody   nobody        4096 Oct 30 00:00 .
 drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
 drwxr-xr-x    3 nobody   nobody        4096 Oct 30 00:00 classes
--rw-r--r--    1 nobody   nobody        1828 Oct 30 00:00 classpath.idx
+-rw-r--r--    1 nobody   nobody        1826 Oct 30 00:00 classpath.idx
 -rw-r--r--    1 nobody   nobody         212 Oct 30 00:00 layers.idx
 drwxr-xr-x    2 nobody   nobody        4096 Oct 30 00:00 lib
 
@@ -187,7 +187,7 @@ log/:
 total 12
 drwxr-xr-x    2 daemon   daemon        4096 Oct 30 00:00 .
 drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
--rw-r--r--    1 daemon   daemon         480 Oct 30 00:00 bus.log
+-rw-r--r--    1 daemon   daemon         481 Oct 30 00:00 bus.log
 /var/tmp $
 /var/tmp $ netstat -plunt
 Active Internet connections (only servers)
