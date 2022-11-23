@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.0</version>
+        <version>2.7.5</version>
         <relativePath /><!-- lookup parent from repository -->
     </parent>
     <groupId>com.transroutownish.proto</groupId>
@@ -51,8 +51,13 @@
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
             <artifactId>slf4j-reload4j</artifactId>
-            <version>1.7.36</version>
+            <version>2.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.graylog2</groupId>
@@ -62,7 +67,7 @@
         <dependency>
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna</artifactId>
-            <version>5.11.0</version>
+            <version>5.12.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
