@@ -157,41 +157,41 @@ $
 $ sudo docker exec -it bus sh; echo $?
 /var/tmp $
 /var/tmp $ java --version
-openjdk 11.0.13 2021-10-19 LTS
-OpenJDK Runtime Environment Zulu11.52+13-CA (build 11.0.13+8-LTS)
-OpenJDK 64-Bit Server VM Zulu11.52+13-CA (build 11.0.13+8-LTS, mixed mode)
+openjdk 11.0.17 2022-10-18 LTS
+OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)
+OpenJDK 64-Bit Server VM Zulu11.60+19-CA (build 11.0.17+8-LTS, mixed mode)
 /var/tmp $
 /var/tmp $ ls -al
 total 32
-drwxrwxrwt    1 root     root          4096 Oct 30 00:00 .
-drwxr-xr-x    1 root     root          4096 Aug 27 00:00 ..
-drwxr-xr-x    1 nobody   nobody        4096 Oct 30 00:00 BOOT-INF
-drwxr-xr-x    3 nobody   nobody        4096 Oct 30 00:00 META-INF
-drwxr-xr-x    2 root     root          4096 Oct 30 00:00 data
-drwxr-xr-x    2 daemon   daemon        4096 Oct 30 00:00 log
-drwxr-xr-x    3 nobody   nobody        4096 Oct 30 00:00 org
+drwxrwxrwt    1 root     root          4096 Nov 24 11:35 .
+drwxr-xr-x    1 root     root          4096 Aug  9 08:58 ..
+drwxr-xr-x    1 nobody   nobody        4096 Nov 24 11:25 BOOT-INF
+drwxr-xr-x    3 nobody   nobody        4096 Nov 24 11:25 META-INF
+drwxr-xr-x    2 root     root          4096 Nov 24 11:25 data
+drwxr-xr-x    2 daemon   daemon        4096 Nov 24 11:35 log
+drwxr-xr-x    3 nobody   nobody        4096 Nov 24 11:25 org
 /var/tmp $
 /var/tmp $ ls -al BOOT-INF/ data/ log/
 BOOT-INF/:
 total 24
-drwxr-xr-x    1 nobody   nobody        4096 Oct 30 00:00 .
-drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
-drwxr-xr-x    3 nobody   nobody        4096 Oct 30 00:00 classes
--rw-r--r--    1 nobody   nobody        1826 Oct 30 00:00 classpath.idx
--rw-r--r--    1 nobody   nobody         212 Oct 30 00:00 layers.idx
-drwxr-xr-x    2 nobody   nobody        4096 Oct 30 00:00 lib
+drwxr-xr-x    1 nobody   nobody        4096 Nov 24 11:25 .
+drwxrwxrwt    1 root     root          4096 Nov 24 11:35 ..
+drwxr-xr-x    3 nobody   nobody        4096 Nov 24 11:25 classes
+-rw-r--r--    1 nobody   nobody        1826 Nov 24 00:50 classpath.idx
+-rw-r--r--    1 nobody   nobody         212 Nov 24 00:50 layers.idx
+drwxr-xr-x    2 nobody   nobody        4096 Nov 24 11:25 lib
 
 data/:
 total 56
-drwxr-xr-x    2 root     root          4096 Oct 30 00:00 .
-drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
--rw-rw-r--    1 root     root         46218 Oct 30 00:00 routes.txt
+drwxr-xr-x    2 root     root          4096 Nov 24 11:25 .
+drwxrwxrwt    1 root     root          4096 Nov 24 11:35 ..
+-rw-rw-r--    1 root     root         46218 Oct 20  2021 routes.txt
 
 log/:
 total 12
-drwxr-xr-x    2 daemon   daemon        4096 Oct 30 00:00 .
-drwxrwxrwt    1 root     root          4096 Oct 30 00:00 ..
--rw-r--r--    1 daemon   daemon         481 Oct 30 00:00 bus.log
+drwxr-xr-x    2 daemon   daemon        4096 Nov 24 11:35 .
+drwxrwxrwt    1 root     root          4096 Nov 24 11:35 ..
+-rw-r--r--    1 daemon   daemon         480 Nov 24 11:35 bus.log
 /var/tmp $
 /var/tmp $ netstat -plunt
 Active Internet connections (only servers)
@@ -200,9 +200,9 @@ tcp        0      0 0.0.0.0:8765            0.0.0.0:*               LISTEN      
 /var/tmp $
 /var/tmp $ ps ax
 PID   USER     TIME  COMMAND
-    1 daemon    0:10 java org.springframework.boot.loader.JarLauncher
+    1 daemon    0:15 java org.springframework.boot.loader.JarLauncher
    26 daemon    0:00 sh
-   46 daemon    0:00 ps ax
+   47 daemon    0:00 ps ax
 /var/tmp $
 /var/tmp $ exit # Or simply <Ctrl-D>.
 0
