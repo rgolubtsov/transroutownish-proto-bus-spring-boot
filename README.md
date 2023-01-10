@@ -140,7 +140,7 @@ docker: Error response from daemon: Conflict.
 Yet even better, a Docker image might be run by issuing a compound command, beginning with deleting all stopped containers:
 
 ```
-$ sudo docker rm `sudo docker ps -aq` && \
+$ sudo docker rm `sudo docker ps -aq`; \
   export PORT=8765 && sudo docker run -dp${PORT}:${PORT} --name bus transroutownish/bus; echo $?
 ...
 ```
