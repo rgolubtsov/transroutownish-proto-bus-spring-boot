@@ -47,11 +47,11 @@ One may consider this project has to be suitable for a wide variety of applied a
 
 ## Building
 
-The microservice is known to be built and run successfully under **Ubuntu Server (Ubuntu 22.04.1 LTS x86-64)**. Install the necessary dependencies (`openjdk-11-jdk-headless`, `make`, `docker.io`):
+The microservice is known to be built and run successfully under **Ubuntu Server (Ubuntu 22.04.1 LTS x86-64)**. Install the necessary dependencies (`openjdk-17-jdk-headless`, `make`, `docker.io`):
 
 ```
 $ sudo apt-get update && \
-  sudo apt-get install openjdk-11-jdk-headless make docker.io -y
+  sudo apt-get install openjdk-17-jdk-headless make docker.io -y
 ```
 
 **Build** the microservice using **Maven Wrapper**:
