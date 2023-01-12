@@ -12,14 +12,14 @@
 #
 
 # === Stage 1: Extract JAR layers =============================================
-FROM       azul/zulu-openjdk-alpine:11-jre-headless-latest AS layers
+FROM       azul/zulu-openjdk-alpine:17-jre-headless-latest AS layers
 USER       nobody
 WORKDIR    var/tmp
 COPY       target/*.jar bus.jar
 RUN        ["java", "-Djarmode=layertools", "-jar", "bus.jar", "extract", "--destination", "layers"]
 
 # === Stage 2: Run the microservice ===========================================
-FROM       azul/zulu-openjdk-alpine:11-jre-headless-latest
+FROM       azul/zulu-openjdk-alpine:17-jre-headless-latest
 USER       daemon
 WORKDIR    var/tmp
 ARG        LAYERS=var/tmp/layers
