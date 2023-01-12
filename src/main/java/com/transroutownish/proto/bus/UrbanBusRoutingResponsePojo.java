@@ -1,7 +1,7 @@
 /*
  * src/main/java/com/transroutownish/proto/bus/UrbanBusRoutingResponsePojo.java
  * ============================================================================
- * Urban bus routing microservice prototype. Version 0.20.2
+ * Urban bus routing microservice prototype. Version 0.30.0
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing a simple urban bus routing prototype.
@@ -16,7 +16,7 @@ package com.transroutownish.proto.bus;
 /**
  * The POJO representation, returning in the response.
  *
- * @version 0.20.2
+ * @version 0.30.0
  * @since   0.0.1
  */
 public class UrbanBusRoutingResponsePojo {
