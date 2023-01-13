@@ -157,41 +157,41 @@ $
 $ sudo docker exec -it bus sh; echo $?
 /var/tmp $
 /var/tmp $ java --version
-openjdk 11.0.17 2022-10-18 LTS
-OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)
-OpenJDK 64-Bit Server VM Zulu11.60+19-CA (build 11.0.17+8-LTS, mixed mode)
+openjdk 17.0.5 2022-10-18 LTS
+OpenJDK Runtime Environment Zulu17.38+21-CA (build 17.0.5+8-LTS)
+OpenJDK 64-Bit Server VM Zulu17.38+21-CA (build 17.0.5+8-LTS, mixed mode, sharing)
 /var/tmp $
 /var/tmp $ ls -al
 total 32
-drwxrwxrwt    1 root     root          4096 Nov 24 11:35 .
+drwxrwxrwt    1 root     root          4096 Jan 12 22:55 .
 drwxr-xr-x    1 root     root          4096 Aug  9 08:58 ..
-drwxr-xr-x    1 nobody   nobody        4096 Nov 24 11:25 BOOT-INF
-drwxr-xr-x    3 nobody   nobody        4096 Nov 24 11:25 META-INF
-drwxr-xr-x    2 root     root          4096 Nov 24 11:25 data
-drwxr-xr-x    2 daemon   daemon        4096 Nov 24 11:35 log
-drwxr-xr-x    3 nobody   nobody        4096 Nov 24 11:25 org
+drwxr-xr-x    1 nobody   nobody        4096 Jan 12 22:50 BOOT-INF
+drwxr-xr-x    3 nobody   nobody        4096 Jan 12 22:50 META-INF
+drwxr-xr-x    2 root     root          4096 Jan 12 22:51 data
+drwxr-xr-x    2 daemon   daemon        4096 Jan 12 22:55 log
+drwxr-xr-x    3 nobody   nobody        4096 Jan 12 22:50 org
 /var/tmp $
 /var/tmp $ ls -al BOOT-INF/ data/ log/
 BOOT-INF/:
 total 24
-drwxr-xr-x    1 nobody   nobody        4096 Nov 24 11:25 .
-drwxrwxrwt    1 root     root          4096 Nov 24 11:35 ..
-drwxr-xr-x    3 nobody   nobody        4096 Nov 24 11:25 classes
--rw-r--r--    1 nobody   nobody        1826 Nov 24 00:50 classpath.idx
--rw-r--r--    1 nobody   nobody         212 Nov 24 00:50 layers.idx
-drwxr-xr-x    2 nobody   nobody        4096 Nov 24 11:25 lib
+drwxr-xr-x    1 nobody   nobody        4096 Jan 12 22:50 .
+drwxrwxrwt    1 root     root          4096 Jan 12 22:55 ..
+drwxr-xr-x    3 nobody   nobody        4096 Jan 12 22:50 classes
+-rw-r--r--    1 nobody   nobody        1966 Jan 13  2023 classpath.idx
+-rw-r--r--    1 nobody   nobody         212 Jan 13  2023 layers.idx
+drwxr-xr-x    2 nobody   nobody        4096 Jan 12 22:50 lib
 
 data/:
 total 56
-drwxr-xr-x    2 root     root          4096 Nov 24 11:25 .
-drwxrwxrwt    1 root     root          4096 Nov 24 11:35 ..
+drwxr-xr-x    2 root     root          4096 Jan 12 22:51 .
+drwxrwxrwt    1 root     root          4096 Jan 12 22:55 ..
 -rw-rw-r--    1 root     root         46218 Oct 20  2021 routes.txt
 
 log/:
 total 12
-drwxr-xr-x    2 daemon   daemon        4096 Nov 24 11:35 .
-drwxrwxrwt    1 root     root          4096 Nov 24 11:35 ..
--rw-r--r--    1 daemon   daemon         480 Nov 24 11:35 bus.log
+drwxr-xr-x    2 daemon   daemon        4096 Jan 12 22:55 .
+drwxrwxrwt    1 root     root          4096 Jan 12 22:55 ..
+-rw-r--r--    1 daemon   daemon         467 Jan 12 22:55 bus.log
 /var/tmp $
 /var/tmp $ netstat -plunt
 Active Internet connections (only servers)
@@ -200,9 +200,9 @@ tcp        0      0 0.0.0.0:8765            0.0.0.0:*               LISTEN      
 /var/tmp $
 /var/tmp $ ps ax
 PID   USER     TIME  COMMAND
-    1 daemon    0:15 java org.springframework.boot.loader.JarLauncher
-   26 daemon    0:00 sh
-   47 daemon    0:00 ps ax
+    1 daemon    0:12 java org.springframework.boot.loader.JarLauncher
+   28 daemon    0:00 sh
+   50 daemon    0:00 ps ax
 /var/tmp $
 /var/tmp $ exit # Or simply <Ctrl-D>.
 0
@@ -240,10 +240,10 @@ The microservice has the ability to log messages to a logfile and to the Unix sy
 ```
 $ tail -f log/bus.log
 ...
-[2022-04-04][20:10:30][INFO ]  Server started on port 8765
-[2022-04-04][20:12:20][DEBUG]  from=4838 | to=524987
-[2022-04-04][20:13:10][DEBUG]  from=82 | to=35390
-[2022-04-04][20:15:00][INFO ]  Server stopped
+[2023-01-13][02:10:39][INFO ]  Server started on port 8765
+[2023-01-13][02:10:52][DEBUG]  from=4838 | to=524987
+[2023-01-13][02:10:56][DEBUG]  from=82 | to=35390
+[2023-01-13][02:15:07][INFO ]  Server stopped
 ...
 ```
 
@@ -252,10 +252,10 @@ Messages registered by the Unix system logger can be seen and analyzed using the
 ```
 $ journalctl -f
 ...
-Apr 04 20:10:30 <hostname> java[<pid>]: Server started on port 8765
-Apr 04 20:12:20 <hostname> java[<pid>]: from=4838 | to=524987
-Apr 04 20:13:10 <hostname> java[<pid>]: from=82 | to=35390
-Apr 04 20:15:00 <hostname> java[<pid>]: Server stopped
+Jan 13 02:10:39 <hostname> java[<pid>]: Server started on port 8765
+Jan 13 02:10:52 <hostname> java[<pid>]: from=4838 | to=524987
+Jan 13 02:10:56 <hostname> java[<pid>]: from=82 | to=35390
+Jan 13 02:15:07 <hostname> java[<pid>]: Server stopped
 ...
 ```
 
@@ -264,9 +264,9 @@ Inside the running container logs might be queried also by `tail`ing the `log/bu
 ```
 /var/tmp $ tail -f log/bus.log
 ...
-[2022-04-04][20:20:10][INFO ]  Server started on port 8765
-[2022-04-04][20:20:30][DEBUG]  from=4838 | to=524987
-[2022-04-04][20:20:40][DEBUG]  from=82 | to=35390
+[2023-01-12][23:30:47][INFO ]  Server started on port 8765
+[2023-01-12][23:35:08][DEBUG]  from=4838 | to=524987
+[2023-01-12][23:35:13][DEBUG]  from=82 | to=35390
 ```
 
 And of course Docker itself gives the possibility to read log messages by using the corresponding command for that:
@@ -274,12 +274,12 @@ And of course Docker itself gives the possibility to read log messages by using 
 ```
 $ sudo docker logs -f bus
 ...
-[2022-04-04][20:20:10][INFO ]  Server started on port 8765
+[2023-01-12][23:30:47][INFO ]  Server started on port 8765
 ...
-[2022-04-04][20:20:30][DEBUG]  from=4838 | to=524987
-[2022-04-04][20:20:40][DEBUG]  from=82 | to=35390
+[2023-01-12][23:35:08][DEBUG]  from=4838 | to=524987
+[2023-01-12][23:35:13][DEBUG]  from=82 | to=35390
 ...
-[2022-04-04][20:20:50][INFO ]  Server stopped
+[2023-01-12][23:37:37][INFO ]  Server stopped
 ```
 
 ### Error handling
