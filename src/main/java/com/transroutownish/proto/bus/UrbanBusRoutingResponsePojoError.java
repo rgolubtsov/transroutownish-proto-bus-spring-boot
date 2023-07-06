@@ -2,7 +2,7 @@
  * src/main/java/com/transroutownish/proto/bus/
  * UrbanBusRoutingResponsePojoError.java
  * ============================================================================
- * Urban bus routing microservice prototype. Version 0.30.0
+ * Urban bus routing microservice prototype. Version 0.30.2
  * ============================================================================
  * A Spring Boot-based application, designed and intended to be run
  * as a microservice, implementing a simple urban bus routing prototype.
@@ -18,7 +18,7 @@ package com.transroutownish.proto.bus;
  * The POJO representation, returning in the response
  * when erroneous behavior is occurred.
  *
- * @version 0.30.0
+ * @version 0.30.2
  * @since   0.0.1
  */
 public class UrbanBusRoutingResponsePojoError {
