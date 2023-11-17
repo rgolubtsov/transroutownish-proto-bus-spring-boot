@@ -14,7 +14,7 @@
 package com.transroutownish.proto.bus;
 
 /**
- * The POJO representation, returning in the response.
+ * The POJO representation of successful message, returning in the response.
  *
  * @version 0.30.3
  * @since   0.0.1
@@ -60,7 +60,7 @@ public class UrbanBusRoutingResponsePojo {
     }
 
     /**
-     * The effective constructor.
+     * The effective constructor for successful message.
      *
      * @param _from   The starting bus stop point.
      * @param _to     The ending   bus stop point.

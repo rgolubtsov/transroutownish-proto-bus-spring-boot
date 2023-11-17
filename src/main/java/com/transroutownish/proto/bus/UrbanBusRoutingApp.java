@@ -66,7 +66,7 @@ public class UrbanBusRoutingApp implements DisposableBean {
     /** The application properties object. */
     public static Properties props;
 
-    /** The list, containing all available routes. */
+    /** A list containing all available routes. */
     public static List<String> routes_list;
 
     /** The debug logging enabler. */
@@ -75,7 +75,7 @@ public class UrbanBusRoutingApp implements DisposableBean {
     /**
      * The microservice entry point.
      *
-     * @param args The array of command-line arguments.
+     * @param args An array of command-line arguments.
      */
     public static void main(final String[] args) {
         Scanner routes = null;
@@ -119,6 +119,7 @@ public class UrbanBusRoutingApp implements DisposableBean {
         ConfigurableApplicationContext ctx
             = SpringApplication.run(UrbanBusRoutingApp.class, args);
 
+        // Getting the port number used to run the bundled web server.
         String port_number = ctx.getEnvironment().getProperty(SERVER_PORT);
 
         l.info(MSG_SERVER_STARTED + port_number);

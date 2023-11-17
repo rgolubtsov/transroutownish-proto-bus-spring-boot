@@ -15,8 +15,9 @@
 package com.transroutownish.proto.bus;
 
 /**
- * The POJO representation, returning in the response
- * when erroneous behavior is occurred.
+ * The POJO representation of the error message, returning in the response
+ * when one of the <strong>4xx Client Error</strong> section's errors occurred
+ * during processing the request.
  *
  * @version 0.30.3
  * @since   0.0.1
@@ -35,7 +36,7 @@ public class UrbanBusRoutingResponsePojoError {
     }
 
     /**
-     * The effective constructor.
+     * The effective constructor for the error message.
      *
      * @param _error The error message.
      */
